@@ -1,6 +1,7 @@
-#include <iostream>
+#include "Span.hpp"
 
 int main()
 {
-    std::cout << "Good Luck !" << std::endl;
+    Car Merc("Merecedes", "A180", 2015, 'D');
+    Merc.print();
 }
