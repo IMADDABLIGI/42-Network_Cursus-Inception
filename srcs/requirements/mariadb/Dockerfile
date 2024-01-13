@@ -10,7 +10,7 @@ RUN apt-get install -y mariadb-server
 
 #RUN mariadb
 
-#RUN mariadb
+#RUN create a user ;
 
 
 CMD ["sleep", "4000000"]
