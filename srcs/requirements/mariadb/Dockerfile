@@ -1,16 +1,9 @@
 FROM debian:bullseye
 
-RUN apt-get update
+RUN apt-get update && install -y mariadb-server
 
-RUN apt-get install -y mariadb-server
+COPY database.sh /root/script
 
-#RUN service mariadb start
+RUN chmod +x /root/script/database.sh
 
-#RUN service mariadb status
-
-#RUN mariadb
-
-#RUN create a user ;
-
-
-CMD ["sleep", "4000000"]
+CMD ["./root/script/database.sh"]
