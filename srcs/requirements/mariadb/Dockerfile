@@ -1,8 +1,8 @@
 FROM debian:bullseye
 
-RUN apt-get update && install -y mariadb-server
+RUN apt-get update && apt-get install -y mariadb-server
 
-COPY database.sh /root/script
+COPY database.sh /root/script/
 
 RUN chmod +x /root/script/database.sh
 
