@@ -6,9 +6,11 @@ sleep 5
 
 mariadb -u root<<EOF
 CREATE DATABASE WP_db;
-CREATE USER 'ST'@'localhost' IDENTIFIED BY '123';
-GRANT ALL PRIVILEGES ON WP_db.* TO 'ST'@'localhost';
+CREATE USER 'ST'@'%' IDENTIFIED BY '123';
+GRANT ALL PRIVILEGES ON *.* TO 'ST'@'%';
 FLUSH PRIVILEGES;
 EOF
 
-sleep 4000000
+mysqladmin -u ST -p123 shutdown
+
+exec mysqld_safeclear
