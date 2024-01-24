@@ -13,4 +13,4 @@ EOF
 
 mysqladmin -u ST -p123 shutdown
 
-exec mysqld_safeclear
+mysqld_safe
