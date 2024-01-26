@@ -16,4 +16,4 @@ wp config set DB_HOST 'mariactr:3306' --allow-root --path=/wp
 wp core install --url=localhost --title=TEST --admin_user=king --admin_password=kingpass --admin_email=projectnum05@gmail.com --allow-root --path=/wp
 
 
-sleep 4000000
+sleep 400000
