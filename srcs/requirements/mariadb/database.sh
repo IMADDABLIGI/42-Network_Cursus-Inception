@@ -11,6 +11,10 @@ GRANT ALL PRIVILEGES ON *.* TO 'ST'@'%';
 FLUSH PRIVILEGES;
 EOF
 
-mysqladmin -u ST -p123 shutdown
+mysqladmin shutdown
 
 mysqld_safe
+
+
+#The lines between <<EOF and EOF are executed as commands 
+# within the MariaDB shell.

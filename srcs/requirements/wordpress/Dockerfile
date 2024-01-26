@@ -23,3 +23,8 @@ COPY wp.sh /copy/
 RUN chmod +x /copy/wp.sh
 
 CMD ["./copy/wp.sh"]
+
+
+#docker system prune -a
+
+#wp core install --url=idabligi.42.fr --title=TEST --admin_user=king --admin_password=kingpass --admin_email=info@example.com --allow-root --path=/wp
