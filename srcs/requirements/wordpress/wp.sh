@@ -8,8 +8,8 @@ apt install iproute2 -y
 
 apt-get install iputils-ping
 
-wp config set DB_NAME 'WP_db' --allow-root --path=/wp
-wp config set DB_USER 'ST' --allow-root --path=/wp
+wp config set DB_NAME 'WP_DB' --allow-root --path=/wp
+wp config set DB_USER 'WP' --allow-root --path=/wp
 wp config set DB_PASSWORD '123' --allow-root --path=/wp
 wp config set DB_HOST 'mariactr:3306' --allow-root --path=/wp
 
