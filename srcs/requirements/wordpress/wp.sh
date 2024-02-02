@@ -8,9 +8,6 @@ mkdir wp && cd wp && wp core download --allow-root
 
 mv wp-config-sample.php wp-config.php && wp config set SERVER_PORT 3306 --allow-root
 
-apt install iproute2 -y
-apt-get install iputils-ping
-
 wp config set DB_NAME 'WP_DB' --allow-root --path=/wp
 wp config set DB_USER 'WP' --allow-root --path=/wp
 wp config set DB_PASSWORD '123' --allow-root --path=/wp

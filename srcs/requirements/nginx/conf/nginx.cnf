@@ -6,7 +6,6 @@ server {
             
             #root and index and server_name
             root /var/www/html;
-            server_name idabligi.42.fr;
             index index.php index.html index.htm;
 
             location / {
