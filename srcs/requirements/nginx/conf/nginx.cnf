@@ -9,11 +9,11 @@ server {
             index index.php index.html index.htm;
 
             location / {
-                try_files $uri $uri/ =404;
+                try_files $uri $uri/ =404;                  # Uniform Resource Identifier
             }
         
             location ~ \.php$ {								# For every php request
                 include snippets/fastcgi-php.conf;
-                fastcgi_pass wordpress:9000;				# Redirect all php request to wordpress port 9000
+                fastcgi_pass wordpress:9000;     			# Redirect all php request to wordpress port 9000
             }
         }
