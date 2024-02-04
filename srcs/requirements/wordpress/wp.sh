@@ -4,7 +4,7 @@ curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.pha
 
 chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 
-mkdir wp && cd wp && wp core download --allow-root
+cd wp && wp core download --allow-root
 
 mv wp-config-sample.php wp-config.php && wp config set SERVER_PORT 3306 --allow-root
 

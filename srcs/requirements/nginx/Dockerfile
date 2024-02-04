@@ -14,6 +14,6 @@ RUN chown -R www-data:www-data /var/www/html
 
 COPY conf/nginx.cnf /etc/nginx/
 
-CMD ["sleep", "4000000"]
+# CMD ["sleep", "4000000"]
 
-# CMD [ "nginx", "-g", "daemon off;" ]
+CMD [ "nginx", "-g", "daemon off;" ]
