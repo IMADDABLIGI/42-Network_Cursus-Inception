@@ -4,6 +4,10 @@ curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.pha
 
 chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 
+chown -R root:root /wp
+
+mkdir /run/php
+
 cd wp && wp core download --allow-root
 
 mv wp-config-sample.php wp-config.php && wp config set SERVER_PORT 3306 --allow-root
@@ -15,4 +19,4 @@ wp config set DB_HOST 'mactr:3306' --allow-root --path=/wp
 
 wp core install --url=localhost --title=TEST --admin_user=king --admin_password=kingpass --admin_email=projectnum05@gmail.com --allow-root --path=/wp
 
-sleep 400000
+/usr/sbin/php-fpm7.4 -F

@@ -10,8 +10,6 @@ RUN openssl req -x509 -nodes -out /etc/nginx/ssl/NG.crt -keyout /etc/nginx/ssl/N
 
 RUN chown -R www-data:www-data /var/www/html
 
-COPY conf/nginx.cnf /etc/nginx/
-
-# CMD ["sleep", "4000000"]
+COPY conf/nginx.conf etc/nginx/sites-available/default
 
 CMD [ "nginx", "-g", "daemon off;" ]
