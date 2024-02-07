@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  mariadb:
+    build: ./requirements/mariadb/
+    container_name: mactr
+    ports:
+      - 3306:3306
+    restart: always
+    networks:
+      - NT
+  wordpress:
+    build: ./requirements/wordpress/
+    container_name: wpctr
+    ports:
+      - 9000:9000
+    restart: always
+    networks:
+      - NT
+    volumes:
+      - WP_Files:/var/www/html
+  nginx:
+    build: ./requirements/nginx/
+    container_name: ngctr
+    restart: always
+    networks:
+      - NT
+    ports:
+      - 443:443
+    volumes:
+      - WP_Files:/var/www/html
+networks:
+  NT:
+
+volumes:
+  WP_Files:
