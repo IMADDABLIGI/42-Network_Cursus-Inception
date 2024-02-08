@@ -23,4 +23,6 @@ wp config set DB_HOST 'mactr:3306' --allow-root --path=/var/www/html
 
 wp core install --url=localhost --title=TEST --admin_user=king --admin_password=kingpass --admin_email=projectnum05@gmail.com --allow-root --path=/var/www/html
 
+wp user create ahmed ahmed.folan@gmail.com --role=author --allow-root --path=/var/www/html --user_pass=ahmedpass
+
 /usr/sbin/php-fpm7.4 -F
