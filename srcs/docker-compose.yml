@@ -38,4 +38,5 @@ networks:
 
 volumes:
   WordPress:
+    external: true
   DB:
