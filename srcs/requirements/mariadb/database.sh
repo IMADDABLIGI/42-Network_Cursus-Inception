@@ -2,18 +2,18 @@
 
 mysqld_safe &
 
-sleep 5
+sleep 3
 
 mariadb -u root <<EOF
-CREATE DATABASE WP_DB;
-CREATE USER 'WP'@'%' IDENTIFIED BY '123';
-GRANT ALL PRIVILEGES ON *.* TO 'WP'@'%';
+CREATE DATABASE $DB_NAME;
+CREATE USER $MARIA_DB_USER@'%' IDENTIFIED BY '$MARIA_DB_USER_PASSWORD';
+GRANT ALL PRIVILEGES ON *.* TO $MARIA_DB_USER@'%';
 FLUSH PRIVILEGES;
 EOF
 
-mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '911';"
+mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MARIA_DB_ROOT_PASSWORD';"
 
-mysqladmin -u root -p911 shutdown
+mysqladmin -u root -p$MARIA_DB_ROOT_PASSWORD shutdown
 
 mysqld_safe
 

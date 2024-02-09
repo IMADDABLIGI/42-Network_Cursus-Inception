@@ -9,6 +9,8 @@ services:
       - NT
     volumes:
       - DB:/var/lib/mysql
+    env_file:
+      - .env
 
   wordpress:
     build: ./requirements/wordpress/
@@ -18,6 +20,8 @@ services:
       - NT
     volumes:
       - WordPress:/var/www/html
+    env_file:
+      - .env
 
   nginx:
     build: ./requirements/nginx/
