@@ -38,5 +38,14 @@ networks:
 
 volumes:
   WordPress:
-    external: true
+    driver: local
+    driver_opts:
+       o: bind
+       type: none
+       device: /Users/idabligi/Desktop/vms/WP
   DB:
+    driver: local
+    driver_opts:
+       o: bind
+       type: none
+       device: /Users/idabligi/Desktop/vms/MariaDB
