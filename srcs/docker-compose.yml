@@ -42,10 +42,10 @@ volumes:
     driver_opts:
        o: bind
        type: none
-       device: /Users/idabligi/Desktop/vms/WP
+       device: /home/idabligi/Desktop/data/WP
   DB:
     driver: local
     driver_opts:
        o: bind
        type: none
-       device: /Users/idabligi/Desktop/vms/MariaDB
+       device: /home/idabligi/Desktop/data/MariaDB
