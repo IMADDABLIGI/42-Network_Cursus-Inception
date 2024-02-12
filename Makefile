@@ -11,19 +11,15 @@
 # **************************************************************************** #
 
 RUN = sudo docker compose up --build
-# VOLUME_WP = docker volume create --opt type=none --opt device=/Users/idabligi/Desktop/vm/WP --opt o=bind WordPress
-# VOLUME_DB = docker volume create --opt type=none --opt device=/Users/idabligi/Desktop/vm/MariaDB --opt o=bind DB
 
 CLEAN = sudo docker compose down --rmi all
 
 all :
 	cd srcs && $(RUN)
 
-clean:
+down:
 	cd srcs && $(CLEAN)
 
-fclean : clean
-
-re : clean all
+re : down all
 
 .PHONY: up

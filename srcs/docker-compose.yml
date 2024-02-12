@@ -33,6 +33,7 @@ services:
       - 443:443
     volumes:
       - WordPress:/var/www/html
+
 networks:
   NT:
 
