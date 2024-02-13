@@ -16,6 +16,3 @@ mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MARIA_DB_ROOT_PASSWORD';
 mysqladmin -u root -p$MARIA_DB_ROOT_PASSWORD shutdown
 
 mysqld_safe
-
-#The lines between <<EOF and EOF are executed as commands 
-# within the MariaDB shell.

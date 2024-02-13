@@ -10,9 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-RUN = sudo docker compose up --build
+RUN = docker compose up --build
 
-CLEAN = sudo docker compose down --rmi all
+CLEAN = docker compose down --rmi all
 
 all :
 	cd srcs && $(RUN)
@@ -21,5 +21,3 @@ down:
 	cd srcs && $(CLEAN)
 
 re : down all
-
-.PHONY: up

@@ -33,6 +33,8 @@ services:
       - 443:443
     volumes:
       - WordPress:/var/www/html
+    env_file:
+      - .env
 
 networks:
   NT:

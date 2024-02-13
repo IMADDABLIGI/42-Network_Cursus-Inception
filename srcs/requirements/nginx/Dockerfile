@@ -6,10 +6,8 @@ RUN apt install -y nginx openssl
 
 RUN mkdir /etc/nginx/ssl
 
-RUN openssl req -x509 -nodes -out /etc/nginx/ssl/NG.crt -keyout /etc/nginx/ssl/NG.key -subj "/C=FR/ST=IDF/L=Paris/O=42/OU=42/CN=idabligi.42.fr/UID=idabligi"
+COPY tools/ng.sh /copy/
 
-RUN chown -R www-data:www-data /var/www/html
+RUN chmod +x /copy/ng.sh
 
-COPY conf/nginx.conf etc/nginx/sites-available/default
-
-CMD [ "nginx", "-g", "daemon off;" ]
+CMD ["./copy/ng.sh"]
