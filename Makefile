@@ -12,7 +12,7 @@
 
 RUN = docker compose up --build
 
-CLEAN = docker compose down --rmi all
+CLEAN = docker compose down --rmi all; clear
 
 all :
 	cd srcs && $(RUN)

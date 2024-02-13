@@ -1,8 +1,6 @@
 #!/bin/sh
 
-sleep 10
-
-openssl req -x509 -nodes -out /etc/nginx/ssl/NG.crt -keyout /etc/nginx/ssl/NG.key -subj "/C=FR/ST=IDF/L=Paris/O=42/OU=42/CN=idabligi.42.fr/UID=idabligi"
+openssl req -x509 -nodes -out ${CERTS_PATH} -keyout /etc/nginx/ssl/NG.key -subj "/C=FR/ST=IDF/L=Paris/O=42/OU=42/CN=idabligi.42.fr/UID=idabligi"
 
 echo "server {
             listen  443 ssl;
