@@ -8,10 +8,8 @@ chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 
 mkdir /run/php
 
-chown -R root:root /var/www/html
-
 cd /var/www/html && wp core download --allow-root
-
+ 
 mv wp-config-sample.php wp-config.php && wp config set SERVER_PORT 3306 --allow-root
 
 wp config set DB_NAME $DB_NAME --allow-root --path=/var/www/html
