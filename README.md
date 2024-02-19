@@ -7,8 +7,8 @@
    - [Docker Architecture](#docker-architecture)
    - [Docker CMD](#docker-cmd)
    - [How Docker Works?](#how-docker-works)
-   - [Does Docker Containers Share the Host OS Kernel?](#docker-container-sharing-kernel)
    - [Docker Isolation](#docker-isolation)
+   - [Does Docker Containers Share the Host OS Kernel?](#docker-container-sharing-kernel)
 3. [MariaDB](#mariadb)
    - [Definition](#mariadb-definition)
    - [What is a Database?](#what-is-a-database)
@@ -75,32 +75,30 @@ have to use docker compose.
 | docker exec -it `(ctr)` bash| start an interactive bash session inside the specified container `(ctr)`
 
 **NOTE :** 
-There are more commands to use with docker but here I specifie the top Essential Docker Commands that you might need in the process of creating your own containers.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+There are more commands to use with docker but in this table I specified the top essential Docker commands that you might need in the process of creating your own containers.
 
 ### How Docker Works?
+- Docker is written in the [Go programming language](https://golang.org/) and takes advantage of several features of the Linux kernel to deliver its functionality. Docker uses a technology called `namespaces` to provide the isolated workspace called the container. When you run a container, Docker creates a set of namespaces for that container.
+- The process of building Docker images and running containers in relation to Docker, containerd, and runc.
 
-### Does Docker Containers Share the Host OS Kernel?
+<p align="center">  <img src="Assets/conatainerd.png" </p>
+
+   **Building Docker Images:**
+
+1. When you issue a `docker build` command with a Dockerfile, it is the Docker daemon (`dockerd`) that handles the build process.
+2. The Docker daemon reads the Dockerfile instructions and orchestrates the build process. It pulls necessary base images, executes each instruction, and creates the desired image following the defined steps.
+3. During the build process, the Docker daemon interacts with containerd to manage the image layers, intermediate containers, and storage operations.
+
+   **Running Containers:**
+
+1. When you run a Docker container using the `docker run` command, it is the Docker daemon (`dockerd`) that handles the container creation and execution.
+2. The Docker daemon communicates with containerd and instructs it to create a container based on the specified image.
+3. Containerd, as the container runtime, then utilizes runc to create and manage the container process with the appropriate namespaces, cgroups, and other isolation mechanisms.
+
 
 ### Docker Isolation
+
+### Does Docker Containers Share the Host OS Kernel?
 
 ## III. MariaDB
 
