@@ -28,12 +28,11 @@
 ---
 
 ## I. Subject Requirements
-   This project consists in having you set up a small infrastructure composed of different
+   - This project consists in having you set up a small infrastructure composed of different
 services under specific rules. The whole project has to be done in a virtual machine. You
 have to use docker compose.
-
 <p align="center">  <img src="Assets/Infrastructure.png" </p>
-
+   - [Inception subject link](https://cdn.intra.42.fr/pdf/pdf/103030/en.subject.pdf) 
 
 
 
