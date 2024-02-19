@@ -3,12 +3,12 @@
 # Table of Contents
 1. [Subject Requirements](#subject-requirements)
 2. [Docker](#docker)
-   - [Definition](#docker-definition)
-   - [Docker Architecture](#docker-architecture)
-   - [Docker CMD](#docker-cmd)
-   - [How Docker Works?](#how-docker-works)
-   - [Docker Isolation](#docker-isolation)
-   - [Does Docker Containers Share the Host OS Kernel?](#docker-container-sharing-kernel)
+   - [I.Definition](#docker-definition)
+   - [II.Docker Architecture](#docker-architecture)
+   - [III.Docker CMD](#docker-cmd)
+   - [IV.How Docker Works ?](#how-docker-works)
+   - [V. Docker Isolation](#docker-isolation)
+   - [VI. Does Docker Containers Share the Host OS Kernel?](#docker-container-sharing-kernel)
 3. [MariaDB](#mariadb)
    - [Definition](#mariadb-definition)
    - [What is a Database?](#what-is-a-database)
@@ -27,7 +27,7 @@
 
 ---
 
-## I. Subject Requirements
+## I. Subject Requirements <a name="subject-requirements"></a>
    - This project consists in having you set up a small infrastructure composed of different
 services under specific rules. The whole project has to be done in a virtual machine. You
 have to use docker compose.
@@ -37,16 +37,16 @@ have to use docker compose.
   <a href="https://cdn.intra.42.fr/pdf/pdf/103030/en.subject.pdf" target="_blank">Inception Subject Link</a>
 </p>
 
-## II. Docker
+## II. Docker <a name="docker"></a>
 
-### Definition
+### I. Definition <a name="docker-definition"></a>
 - `Docker` is a tool that can package an application and its dependencies into an isolated container.
 - `Docker Container` is an isolated workspace.
 - `Docker image` is a blueprint or a template for creating Docker containers. It provides all the necessary instructions and dependencies required to create and run a containerized application.
 - `Docker compose` is a tool that allows you to define and manage multi-container Docker applications. It provides a convenient way to describe the services, networks, and volumes required for your application in a declarative YAML file.
 - `Docker volume` is a persistent data storage mechanism that allows containers to share and store data outside of their individual file systems. Volumes are used to persist and share data between containers, as well as between containers and the host machine.
 - `Docker network` is a virtual infrastructure that enables communication between containers and between containers and the host machine. Docker networks provide isolation, security, and flexibility for containerized applications.
-### Docker Architecture
+### II. Docker Architecture <a name="docker-architecture"></a>
 - `Docker` uses a client-server architecture. The `Docker client` talks to the `Docker daemon`, which does the heavy lifting of building, running, and distributing your `Docker containers`. The Docker client and daemon can run on the same system, or you can connect a Docker client to a remote Docker daemon. The Docker client and daemon communicate using a REST API, over UNIX sockets or a network interface. Another Docker client is Docker Compose, that lets you work with applications consisting of a set of containers.
 
   <p align="center">  <img src="Assets/docker-architecture.webp" </p>
@@ -57,7 +57,7 @@ have to use docker compose.
 #### The Docker client
 - The Docker client `docker` is the primary way that many Docker users interact with Docker. When you use commands such as docker run, the client sends these commands to dockerd, which carries them out. The docker command uses the Docker API. The Docker client can communicate with more than one daemon.
 
-### Docker CMD
+### III. Docker CMD <a name="docker-cmd"></a>
 
 | Command | Description |
 | :----------- | :----------- |
@@ -77,54 +77,65 @@ have to use docker compose.
 **NOTE :** 
 There are more commands to use with docker but in this table I specified the top essential Docker commands that you might need in the process of creating your own containers.
 
-### How Docker Works?
+### IV. How Docker Works ? <a name="how-docker-works"></a>
 - Docker is written in the [Go programming language](https://golang.org/) and takes advantage of several features of the Linux kernel to deliver its functionality. Docker uses a technology called `namespaces` to provide the isolated workspace called the container. When you run a container, Docker creates a set of namespaces for that container.
 - The process of building Docker images and running containers in relation to Docker, containerd, and runc.
 
-<p align="center">  <img src="Assets/conatainerd.png" </p>
+<p align="center">
+  <img src="Assets/containerd.png" width="600">
+</p>
 
-   **Building Docker Images:**
+**Building Docker Images:**
 
 1. When you issue a `docker build` command with a Dockerfile, it is the Docker daemon (`dockerd`) that handles the build process.
 2. The Docker daemon reads the Dockerfile instructions and orchestrates the build process. It pulls necessary base images, executes each instruction, and creates the desired image following the defined steps.
 3. During the build process, the Docker daemon interacts with containerd to manage the image layers, intermediate containers, and storage operations.
 
-   **Running Containers:**
+**Running Containers:**
 
 1. When you run a Docker container using the `docker run` command, it is the Docker daemon (`dockerd`) that handles the container creation and execution.
 2. The Docker daemon communicates with containerd and instructs it to create a container based on the specified image.
 3. Containerd, as the container runtime, then utilizes runc to create and manage the container process with the appropriate namespaces, cgroups, and other isolation mechanisms.
 
+### V. Docker Isolation <a name="docker-isolation"></a>
+- Docker utilizes namespaces and cgroups, which are features provided by the Linux kernel, to achieve isolation for each container.
+**Namespaces:**
+- Namespaces play a crucial role in Docker. Docker utilizes namespaces to provide process isolation and resource virtualization, allowing containers to operate as isolated environments within a shared host operating system.
 
-### Docker Isolation
+- Here's how namespaces help Docker:
 
-### Does Docker Containers Share the Host OS Kernel?
+1. Process isolation: Docker uses the PID (Process ID) namespace to provide each container with its own isolated view of processes. Each container has its own set of process IDs, separate from other containers and the host system. This isolation ensures that processes within a container cannot interfere with or access processes outside of it.
+2. Network isolation: Docker leverages network namespaces to provide network isolation for containers. Each container has its own isolated network stack, including network interfaces, IP addresses, routing tables, and firewall rules. This isolation allows containers to have their own networking configuration and prevents network conflicts between containers.
+3. File system isolation: Mount namespaces enable Docker containers to have their own isolated view of the file system. Each container has its own set of mounted directories and file systems, independent of other containers and the host system. This isolation ensures that changes made within a container's file system do not affect other containers or the host system.
+4. User isolation: User namespaces provide user and group ID isolation for Docker containers. They allow containers to have their own set of user and group IDs, separate from the host system. This isolation enhances security by preventing container processes from accessing or affecting the host system's user accounts.
 
-## III. MariaDB
+### VI. Does Docker Containers Share the Host OS Kernel? <a name=" "></a>
+  
+## III. MariaDB <a name=" "></a>
 
-### Definition
+### Definition <a name=" "></a>
 
-### What is a Database?
+### What is a Database? <a name=" "></a>
 
-### History of MariaDB
+### History of MariaDB <a name=" "></a>
 
-### MariaDB CMD
+### MariaDB CMD <a name=" "></a>
 
-### MariaDB Configuration
+### MariaDB Configuration <a name=" "></a>
 
-## IV. WordPress
+## IV. WordPress <a name=" "></a>
 
-### Definition
+### Definition <a name=" "></a>
 
-WordPress is a popular open-source content management system (CMS)...
+WordPress is a popular open-source content management system (CMS)... 
 
-### WordPress Configuration
+### WordPress Configuration <a name=" "></a>
 
-## V. Nginx
+## V. Nginx <a name=" "></a>
 
-### Definition
+### Definition <a name=" "></a>
 
-### HTTPS
+### HTTPS 
 
 ### SSL
 
