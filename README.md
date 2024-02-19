@@ -52,15 +52,49 @@ have to use docker compose.
   <p align="center">  <img src="Assets/docker-architecture.webp" </p>
   
 #### The Docker daemon
-The Docker daemon `dockerd` listens for Docker API requests and manages Docker objects such as images, containers, networks, and volumes. A daemon can also communicate with other daemons to manage Docker services.
+- The Docker daemon `dockerd` listens for Docker API requests and manages Docker objects such as images, containers, networks, and volumes. A daemon can also communicate with other daemons to manage Docker services.
 
 #### The Docker client
-The Docker client `docker` is the primary way that many Docker users interact with Docker. When you use commands such as docker run, the client sends these commands to dockerd, which carries them out. The docker command uses the Docker API. The Docker client can communicate with more than one daemon.
-
-
-
+- The Docker client `docker` is the primary way that many Docker users interact with Docker. When you use commands such as docker run, the client sends these commands to dockerd, which carries them out. The docker command uses the Docker API. The Docker client can communicate with more than one daemon.
 
 ### Docker CMD
+
+| Command | Description |
+| :----------- | :----------- |
+| docker build . -t `(image)` | This command tells Docker to build an image based on the Dockerfile in the current directory and tag it with the name `(image)` |
+| docker images | list docker images. |
+| docker run --name `(ctr)` `(image)`  | start a new Docker container `(ctr)` from an image `(image)` |
+| docker run -d --name ctr image | start a new Docker container `(ctr)` from an image `(image)` in the background |
+| docker run -p `443:443` --name ctr image | The -p option specifies the port mapping. It tells Docker to map port 443 from the container to port 443 on the host machine. The format is <host_port>:<container_port> |
+| docker run -v `VolumeName`:`/path/in/container` ... | This command mounts the volume `VolumeName` inside the container at the specified `/path/in/container` location |
+| docker ps | This command is used to list all the running Docker containers. |
+| docker stop `(ctr)` | This command is used to stop a running container |
+| docker rm -f `(ctr)` | This command is used to remove a Docker container |
+| docker rmi -f `(ctr)` | This command is used to remove a Docker image |
+| docker kill | Kill one or more running containers |
+| docker exec -it `(ctr)` bash| start an interactive bash session inside the specified container `(ctr)`
+
+**NOTE :** 
+There are more commands to use with docker but here I specifie the top Essential Docker Commands that you might need in the process of creating your own containers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### How Docker Works?
 
