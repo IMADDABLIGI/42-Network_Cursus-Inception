@@ -1,35 +1,35 @@
 <h1 align="center">Inception</h1>
 
 # Table of Contents
-I. [Subject Requirements](#subject-requirements)
-II. [Docker](#docker)
+1. [Subject Requirements](#subject-requirements)
+2. [Docker](#docker)
    - [Definition](#docker-definition)
    - [Docker Architecture](#docker-architecture)
    - [Docker CMD](#docker-cmd)
    - [How Docker Works?](#how-docker-works)
    - [Does Docker Containers Share the Host OS Kernel?](#docker-container-sharing-kernel)
    - [Docker Isolation](#docker-isolation)
-III. [MariaDB](#mariadb)
+3. [MariaDB](#mariadb)
    - [Definition](#mariadb-definition)
    - [What is a Database?](#what-is-a-database)
    - [History of MariaDB](#history-of-mariadb)
    - [MariaDB CMD](#mariadb-cmd)
    - [MariaDB Configuration](#mariadb-configuration)
-IV. [WordPress](#wordpress)
+4. [WordPress](#wordpress)
    - [Definition](#wordpress-definition)
    - [WordPress Configuration](#wordpress-configuration)
-V. [Nginx](#nginx)
+5. [Nginx](#nginx)
    - [Definition](#nginx-definition)
    - [HTTPS](#https)
    - [SSL](#ssl)
    - [Nginx Configuration](#nginx-configuration)
-VI. [Resources](#resources)
+6. [Resources](#resources)
 
 ---
 
-## I. Subject Requirements
+## Subject Requirements
 
-## II. Docker
+## Docker
 
 ### Definition
 
@@ -43,7 +43,7 @@ VI. [Resources](#resources)
 
 ### Docker Isolation
 
-## III. MariaDB
+## MariaDB
 
 ### Definition
 
@@ -55,7 +55,7 @@ VI. [Resources](#resources)
 
 ### MariaDB Configuration
 
-## IV. WordPress
+## WordPress
 
 ### Definition
 
@@ -63,7 +63,7 @@ WordPress is a popular open-source content management system (CMS)...
 
 ### WordPress Configuration
 
-## V. Nginx
+## Nginx
 
 ### Definition
 
@@ -73,4 +73,5 @@ WordPress is a popular open-source content management system (CMS)...
 
 ### Nginx Configuration
 
+## Resources
 ## VI. Resources
