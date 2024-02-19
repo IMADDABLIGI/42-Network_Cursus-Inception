@@ -3,10 +3,10 @@
 # Table of Contents
 1. [Subject Requirements](#subject-requirements)
 2. [Docker](#docker)
-   - [I.Definition](#docker-definition)
-   - [II.Docker Architecture](#docker-architecture)
-   - [III.Docker CMD](#docker-cmd)
-   - [IV.How Docker Works ?](#how-docker-works)
+   - [I. Definition](#docker-definition)
+   - [II. Docker Architecture](#docker-architecture)
+   - [III. Docker CMD](#docker-cmd)
+   - [IV. How Docker Works ?](#how-docker-works)
    - [V. Docker Isolation](#docker-isolation)
    - [VI. Does Docker Containers Share the Host OS Kernel?](#docker-container-sharing-kernel)
 3. [MariaDB](#mariadb)
@@ -81,15 +81,18 @@ There are more commands to use with docker but in this table I specified the top
 - Docker is written in the [Go programming language](https://golang.org/) and takes advantage of several features of the Linux kernel to deliver its functionality. Docker uses a technology called `namespaces` to provide the isolated workspace called the container. When you run a container, Docker creates a set of namespaces for that container.
 - The process of building Docker images and running containers in relation to Docker, containerd, and runc.
 
+
 <p align="center">
   <img src="Assets/containerd.png" width="600">
 </p>
+
 
 **Building Docker Images:**
 
 1. When you issue a `docker build` command with a Dockerfile, it is the Docker daemon (`dockerd`) that handles the build process.
 2. The Docker daemon reads the Dockerfile instructions and orchestrates the build process. It pulls necessary base images, executes each instruction, and creates the desired image following the defined steps.
 3. During the build process, the Docker daemon interacts with containerd to manage the image layers, intermediate containers, and storage operations.
+
 
 **Running Containers:**
 
@@ -99,7 +102,10 @@ There are more commands to use with docker but in this table I specified the top
 
 ### V. Docker Isolation <a name="docker-isolation"></a>
 - Docker utilizes namespaces and cgroups, which are features provided by the Linux kernel, to achieve isolation for each container.
+
+
 **Namespaces:**
+
 - Namespaces play a crucial role in Docker. Docker utilizes namespaces to provide process isolation and resource virtualization, allowing containers to operate as isolated environments within a shared host operating system.
 
 - Here's how namespaces help Docker:
@@ -108,6 +114,16 @@ There are more commands to use with docker but in this table I specified the top
 2. Network isolation: Docker leverages network namespaces to provide network isolation for containers. Each container has its own isolated network stack, including network interfaces, IP addresses, routing tables, and firewall rules. This isolation allows containers to have their own networking configuration and prevents network conflicts between containers.
 3. File system isolation: Mount namespaces enable Docker containers to have their own isolated view of the file system. Each container has its own set of mounted directories and file systems, independent of other containers and the host system. This isolation ensures that changes made within a container's file system do not affect other containers or the host system.
 4. User isolation: User namespaces provide user and group ID isolation for Docker containers. They allow containers to have their own set of user and group IDs, separate from the host system. This isolation enhances security by preventing container processes from accessing or affecting the host system's user accounts.
+
+# Cgroups
+
+- Cgroups, short for control groups, are a feature in the Linux kernel that provide resource isolation and allocation for processes. Cgroups allow you to control and limit the resources (such as CPU, memory, disk I/O, and network bandwidth) that a group of processes can use.
+- When it comes to Docker containers, cgroups play an important role in resource management and isolation. Docker leverages cgroups to allocate and limit system resources for each container, preventing one container from monopolizing system resources and impacting the performance of other containers or the host system.
+
+**NOTE :** 
+- when a process inside a container creates a child process the new child process by default inherits the cgroups and namespaces of he’s parent process.
+
+<p align="center">  <img src="Assets/namespaces.png" </p>
 
 ### VI. Does Docker Containers Share the Host OS Kernel? <a name=" "></a>
   
