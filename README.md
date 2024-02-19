@@ -123,7 +123,10 @@ There are more commands to use with docker but in this table I specified the top
 **NOTE :** 
 - when a process inside a container creates a child process the new child process by default inherits the cgroups and namespaces of he’s parent process.
 
-<p align="center">  <img src="Assets/namespaces.png" </p>
+<p align="center">
+  <img src="Assets/namespaces" width="600">
+</p>
+
 
 ### VI. Does Docker Containers Share the Host OS Kernel? <a name=" "></a>
   
