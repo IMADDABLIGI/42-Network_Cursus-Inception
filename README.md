@@ -32,9 +32,10 @@
 services under specific rules. The whole project has to be done in a virtual machine. You
 have to use docker compose.
 <p align="center">  <img src="Assets/Infrastructure.png" </p>
-   - [Inception subject link](https://cdn.intra.42.fr/pdf/pdf/103030/en.subject.pdf) 
-
-
+   
+   <div style="display: flex; justify-content: center;">
+  <a href="https://cdn.intra.42.fr/pdf/pdf/103030/en.subject.pdf" target="_blank">Inception Subject Link</a>
+</div>
 
 
 
