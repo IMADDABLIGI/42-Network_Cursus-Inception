@@ -27,9 +27,34 @@
 
 ---
 
-## Subject Requirements
+## I. Subject Requirements
+   This project consists in having you set up a small infrastructure composed of different
+services under specific rules. The whole project has to be done in a virtual machine. You
+have to use docker compose.
 
-## Docker
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## II. Docker
 
 ### Definition
 
@@ -43,7 +68,7 @@
 
 ### Docker Isolation
 
-## MariaDB
+## III. MariaDB
 
 ### Definition
 
@@ -55,7 +80,7 @@
 
 ### MariaDB Configuration
 
-## WordPress
+## IV. WordPress
 
 ### Definition
 
@@ -63,7 +88,7 @@ WordPress is a popular open-source content management system (CMS)...
 
 ### WordPress Configuration
 
-## Nginx
+## V. Nginx
 
 ### Definition
 
@@ -73,5 +98,4 @@ WordPress is a popular open-source content management system (CMS)...
 
 ### Nginx Configuration
 
-## Resources
 ## VI. Resources
