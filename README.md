@@ -137,7 +137,19 @@ There are more commands to use with docker but in this table I specified the top
 **LinuxOS :**
 
    On Linux Docker containers share the host operating system's kernel, which means they run on the same kernel as the host machine. This allows containers to be lightweight and provides efficient resource utilization.
-  
+
+**MacOS :**
+
+   On `macOS`, Docker utilizes a lightweight virtualization technology called "Hyperkit" to run Linux containers. Hyperkit is a hypervisor that is part of the Docker Desktop for Mac application. It provides a Linux environment using a virtual machine running on macOS.
+
+   When you install Docker Desktop for Mac on macOS, it includes a small Linux distribution running inside a lightweight virtual machine (Hyperkit).
+
+**WindowsOS:**
+
+   On Windows, Docker Desktop utilizes a different lightweight virtualization technology called "Hyper-V" to run Linux containers. Hyper-V is a native hypervisor developed by Microsoft and is included in certain editions of Windows, such as Windows 10 Professional and Enterprise.
+
+   When Docker Desktop is installed on a Windows machine with Hyper-V enabled, it creates a Linux-based virtual machine (VM) known as the "MobyLinuxVM" to host and manage the Linux containers. This VM runs alongside the Windows operating system and provides the necessary infrastructure for running Docker containers.
+
 ## III. MariaDB <a name=" "></a>
 
 ### Definition <a name=" "></a>
