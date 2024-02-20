@@ -21,6 +21,7 @@
    - [Definition](#nginx-definition)
    - [HTTPS](#https)
    - [SSL](#ssl)
+   - [HOW DOES SSL WORKS ?](#how-ssl)
    - [Nginx Configuration](#nginx-configuration)
 6. [Resources](#resources)
 
@@ -241,11 +242,41 @@ After making this change, WordPress will be able to establish a connection with 
   
 ## V. Nginx <a name="nginx"></a>
 
-### Definition <a name="nginx-definition"></a>
+### I. Definition <a name="nginx-definition"></a>
+- `Nginx` pronounced like “engine-ex”, is an open-source web server software used for reverse proxy, load balancing, and caching. It provides HTTPS server capabilities and is mainly designed for maximum performance and stability.
 
-### HTTPS 
+### II. HTTPS <a name="https"></a>
+- `HTTPS` Hypertext Transfer Protocol Secure is a secure version of HTTP. This protocol enables secure communication between a client (e.g. web browser) and a server (e.g. web server) by using encryption. HTTPS uses Transport Layer Security (TLS) protocol or its predecessor Secure Sockets Layer (SSL) for encryption.
 
-### SSL
+<p align="center">
+  <img src="Assets/HTTPS.png" width="500">
+</p>
+
+   The original use for HTTPS was for ecommerce transactions, email, and other sensitive data transfers. Today it has become the standard for all websites.
+   HTTPS uses a well-known TCP port 443. If the port is not specified in a URL, browsers will use this port when sending HTTPS request.
+
+#### HTTPS Certification
+- `HTTPS` employs `SSL` (Secure Socket Layer) or its successor, `TLS` (Transport Layer Security), to establish an encrypted connection between a web server and a client's browser. SSL/TLS certificates play a crucial role in enabling HTTPS by verifying the authenticity and identity of the server. These certificates are issued by trusted Certificate Authorities and contain cryptographic keys that facilitate secure communication. When a website has a valid SSL/TLS certificate installed, it allows for the encryption of sensitive information, such as login credentials and financial transactions, providing an essential layer of security and ensuring the privacy and integrity of data transmitted between the server and the client.
+
+### III. SSL <a name="ssl"></a>
+- `SSL` Secure Sockets Layer is a standard security technology for establishing an encrypted link between a server and a client—typically a web server (website) and a browser, or a mail server and a mail client (e.g., Outlook). It is more widely known than `TLS`, or Transport Layer Security, the successor technology of SSL.
+
+### IV. HOW DOES SSL WORKS ? <a name="how-ssl"></a>
+
+When a browser attempts to access a website that is secured by SSL, the browser and the web server establish an SSL connection using a process called an “SSL Handshake” (see diagram below). Note that the SSL Handshake is invisible to the user and happens instantaneously.
+
+Essentially, three keys are used to set up the SSL connection: the public, private, and session keys. Anything encrypted with the public key can only be decrypted with the private key, and vice versa.
+
+Because encrypting and decrypting with private and public key takes a lot of processing power, they are only used during the SSL Handshake to create a symmetric session key. After the secure connection is made, the session key is used to encrypt all transmitted data.
+
+  <p align="center">  <img src="Assets/SSL.png" </p>
+
+1. **Browser** connects to a web server (website) secured with SSL (https). Browser requests that the server identify itself.
+2. **Server** sends a copy of its SSL Certificate, including the server’s public key.
+3. **Browser** checks the certificate root against a list of trusted CAs and that the certificate is unexpired, unrevoked, and that its common name is valid for the website that it is connecting to. If the browser trusts the certificate, it creates, encrypts, and sends back a symmetric session key using the server’s public key.
+4. **Server** decrypts the symmetric session key using its private key and sends back an acknowledgement encrypted with the session key to start the encrypted session.
+5. **Server** and Browser now encrypt all transmitted data with the session key.
+
 
 ### Nginx Configuration
 
