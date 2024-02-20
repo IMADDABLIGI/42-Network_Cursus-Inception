@@ -188,9 +188,14 @@ There are more commands to use with docker but in this table I specified the top
 | FLUSH PRIVILEGES; | Ensure the changes take effect. |
 
 **NOTE :** 
+
 You might not need all this commands for the `Inception` project since the `Wordpress` will do all the job for us. But at least you need to know how to acces and reveal the tables inside your mariadb database;
 
- <p align="center">  <img src="Assets/Mariadb_CMD.png" </p>
+**Here's an example of accesing to a Wordpress Database and revaling data inside of the table `wp_users`:**
+
+<p align="left">
+  <img src="Assets/Mariadb_CMD.png" width="900">
+</p>
 
 ### IV. MariaDB Configuration <a name="mariadb-configuration"></a>
 
