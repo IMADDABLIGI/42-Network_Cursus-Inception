@@ -188,14 +188,19 @@ There are more commands to use with docker but in this table I specified the top
 | FLUSH PRIVILEGES; | Ensure the changes take effect. |
 
 **NOTE :** 
-You might not need all this commands for the `Inception` project since the `Wordpress` will do all the job of storing data for us. But atleast you have to know how to acces and reveal the tables inside our mariadb database;
+You might not need all this commands for the `Inception` project since the `Wordpress` will do all the job for us. But at least you need to know how to acces and reveal the tables inside your mariadb database;
 
-
-
-
-
+ <p align="center">  <img src="Assets/Mariadb_CMD.png" </p>
 
 ### IV. MariaDB Configuration <a name="mariadb-configuration"></a>
+
+To configure MariaDB for WordPress, we need to modify the `50-server.cnf` file located at `/etc/mysql/mariadb.conf.d/50-server.cnf`.
+
+By default, the configuration file contains the line `bind_address=localhost`. This setting restricts the MariaDB server to listen only on the local machine's IP address, preventing access from other machines.
+
+However, for WordPress to connect to the MariaDB server, we need to change the value from `localhost` to `0.0.0.0` This modification allows the MariaDB server to listen and be accessible from any machine on the network.
+
+After making this change, WordPress will be able to establish a connection with the MariaDB server, enabling proper communication between the two.
 
 ## IV. WordPress <a name=" "></a>
 
