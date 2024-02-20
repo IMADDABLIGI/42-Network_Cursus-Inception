@@ -167,8 +167,10 @@ There are more commands to use with docker but in this table I specified the top
 | :----------- | :----------- |
 | service `mariadb` start | Start the Mariadb server. |
 | mysqld_safe `&` | Starts the MariaDB server in safe mode as a background process. The & symbol is used to run the command in the background, allowing the script to continue executing while the server is running. |
+| mysqld_safe | Starts the MariaDB server in safe mode as a foreground process. |
 | mariadb | Access to mariadb as root user. |
 | mariadb -u `user` -p`password` -h `host` | Access mariadb using mariadb-client from another machine. -u `user` specifies the username to use when connecting to the database server. `-p...` is used to provide the password for the specified user {no space between -p and the password}. `-h ...` specifies the hostname or IP address of the machine where the MariaDB database server is running. |
+| mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY `password`;" | set a password for the mariadb root user. |
 | show databases; | Reveal all mariadb databases. |
 | use `(name of a database)`; | Acces to that specific database. |
 | create database `(name of new database)`; | Create a database. |
@@ -185,7 +187,8 @@ There are more commands to use with docker but in this table I specified the top
 | GRANT ALL PRIVILEGES ON `*.*` TO `user`@`%`; | This command grants all privileges (ALL PRIVILEGES) to the user `user` for all databases `(*.*)` and all tables within those databases. |
 | FLUSH PRIVILEGES; | Ensure the changes take effect. |
 
-
+**NOTE :** 
+You might not need all this commands for the `Inception` project since the `Wordpress` will do all the job of storing data for us. But atleast you have to know how to acces and reveal the tables inside our mariadb database;
 
 
 
