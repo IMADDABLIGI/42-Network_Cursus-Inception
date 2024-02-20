@@ -24,7 +24,7 @@
    - [SSL](#ssl)
    - [HOW DOES SSL WORKS ?](#how-ssl)
    - [Nginx Configuration](#nginx-configuration)
-6. [Resources](#resources)
+6. [Ressources](#ressources)
 
 ---
 
@@ -321,4 +321,4 @@ Because encrypting and decrypting with private and public key takes a lot of pro
 
 
 
-## VI. Resources
+## VI. Ressources <a name="ressources"></a>
