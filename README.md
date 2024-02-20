@@ -62,18 +62,18 @@ have to use docker compose.
 
 | Command | Description |
 | :----------- | :----------- |
-| docker build . -t `(image)` | This command tells Docker to build an image based on the Dockerfile in the current directory and tag it with the name `(image)` |
+| docker build . -t `(image)` | This command tells Docker to build an image based on the Dockerfile in the current directory and tag it with the name `(image)`. |
 | docker images | list docker images. |
-| docker run --name `(ctr)` `(image)`  | start a new Docker container `(ctr)` from an image `(image)` |
-| docker run -d --name ctr image | start a new Docker container `(ctr)` from an image `(image)` in the background |
-| docker run -p `443:443` --name ctr image | The -p option specifies the port mapping. It tells Docker to map port 443 from the container to port 443 on the host machine. The format is <host_port>:<container_port> |
-| docker run -v `VolumeName`:`/path/in/container` ... | This command mounts the volume `VolumeName` inside the container at the specified `/path/in/container` location |
+| docker run --name `(ctr)` `(image)`  | start a new Docker container `(ctr)` from an image `(image)`. |
+| docker run -d --name ctr image | start a new Docker container `(ctr)` from an image `(image)` in the background. |
+| docker run -p `443:443` --name ctr image | The -p option specifies the port mapping. It tells Docker to map port 443 from the container to port 443 on the host machine. The format is <host_port>:<container_port>.|
+| docker run -v `VolumeName`:`/path/in/container` ... | This command mounts the volume `VolumeName` inside the container at the specified `/path/in/container` location. |
 | docker ps | This command is used to list all the running Docker containers. |
-| docker stop `(ctr)` | This command is used to stop a running container |
-| docker rm -f `(ctr)` | This command is used to remove a Docker container |
-| docker rmi -f `(ctr)` | This command is used to remove a Docker image |
-| docker kill | Kill one or more running containers |
-| docker exec -it `(ctr)` bash| start an interactive bash session inside the specified container `(ctr)`
+| docker stop `(ctr)` | This command is used to stop a running container. |
+| docker rm -f `(ctr)` | This command is used to remove a Docker container. |
+| docker rmi -f `(ctr)` | This command is used to remove a Docker image. |
+| docker kill | Kill one or more running containers. |
+| docker exec -it `(ctr)` bash| start an interactive bash session inside the specified container `(ctr)`.
 
 **NOTE :** 
 There are more commands to use with docker but in this table I specified the top essential Docker commands that you might need in the process of creating your own containers.
@@ -162,6 +162,35 @@ There are more commands to use with docker but in this table I specified the top
    To prevent this, the `MariaDB` foundation creates a version almost identical to MySQL, but completely **open-source**.
 
 ### III. MariaDB CMD <a name="mariadb-cmd"></a>
+
+| Command | Description |
+| :----------- | :----------- |
+| service `mariadb` start | Start the Mariadb server. |
+| mysqld_safe `&` | Starts the MariaDB server in safe mode as a background process. The & symbol is used to run the command in the background, allowing the script to continue executing while the server is running. |
+| mariadb | Access to mariadb as root user. |
+| mariadb -u `user` -p`password` -h `host` | Access mariadb using mariadb-client from another machine. -u `user` specifies the username to use when connecting to the database server. `-p...` is used to provide the password for the specified user {no space between -p and the password}. `-h ...` specifies the hostname or IP address of the machine where the MariaDB database server is running. |
+| show databases; | Reveal all mariadb databases. |
+| use `(name of a database)`; | Acces to that specific database. |
+| create database `(name of new database)`; | Create a database. |
+| show tables; | Reveal all tables of that database. |
+| create table `(name of new table)(arg1, arg2,…)`; | Creating a new table. |
+| explain `(name of a table)`; | Reveal all the arguments of that table. |
+| select * from `(name of a table)`; | Reveal the table values. |
+| insert `(table()) value(arg1, arg2, arg3..)`; | Insert values to a specific table. |
+| update `(table)` set `(the value to change)`=`new value` where std_id=`2`; | Change an added value. |
+| select user from `mysql.user`; | Reveal mariadb users. |
+| create user `user`@`%`; | Creat user, `%` represents the host or the location from which the user is allowed to connect. The '%' wildcard symbol means that the user can connect from any host. If you want to restrict connections to specific hosts, you can replace '%' with the desired hostname or IP address. |
+| create user `user`@`localhost` identified by `password`; | Create user with a password, the localhost will make the user only acces the mariadb from the hostmachine that's running the mariadb server.|
+| drop user `user`@`localhost`; | Drop user. |
+| GRANT ALL PRIVILEGES ON `*.*` TO `user`@`%`; | This command grants all privileges (ALL PRIVILEGES) to the user `user` for all databases `(*.*)` and all tables within those databases. |
+| FLUSH PRIVILEGES; | Ensure the changes take effect. |
+
+
+
+
+
+
+
 
 ### IV. MariaDB Configuration <a name="mariadb-configuration"></a>
 
