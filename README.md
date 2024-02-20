@@ -10,11 +10,10 @@
    - [V. Docker Isolation](#docker-isolation)
    - [VI. Does Docker Containers Share the Host OS Kernel?](#docker-container-sharing-kernel)
 3. [MariaDB](#mariadb)
-   - [Definition](#mariadb-definition)
-   - [What is a Database?](#what-is-a-database)
-   - [History of MariaDB](#history-of-mariadb)
-   - [MariaDB CMD](#mariadb-cmd)
-   - [MariaDB Configuration](#mariadb-configuration)
+   - [I. Definition](#mariadb-definition)
+   - [II. History of MariaDB](#history-of-mariadb)
+   - [III. MariaDB CMD](#mariadb-cmd)
+   - [IV. MariaDB Configuration](#mariadb-configuration)
 4. [WordPress](#wordpress)
    - [Definition](#wordpress-definition)
    - [WordPress Configuration](#wordpress-configuration)
@@ -45,9 +44,9 @@ have to use docker compose.
 - `Docker image` is a blueprint or a template for creating Docker containers. It provides all the necessary instructions and dependencies required to create and run a containerized application.
 - `Docker compose` is a tool that allows you to define and manage multi-container Docker applications. It provides a convenient way to describe the services, networks, and volumes required for your application in a declarative YAML file.
 - `Docker volume` is a persistent data storage mechanism that allows containers to share and store data outside of their individual file systems. Volumes are used to persist and share data between containers, as well as between containers and the host machine.
-- `Docker network` is a virtual infrastructure that enables communication between containers and between containers and the host machine. Docker networks provide isolation, security, and flexibility for containerized applications.
-- `Docker engine` is the core component of the Docker platform. It is responsible for building, running, and managing Docker containers. When you install Docker on your system, it includes the Docker Engine along with other tools and services.
-- `Containerd` Container daemon manages the complete container lifecycle of its host system, from image transfer and storage to container execution and supervision to low-level storage to network attachments and beyond.
+- `Docker network` is a virtual infrastructure that enables communication between containers and the host machine. Docker networks provide isolation, security, and flexibility for containerized applications.
+- `Dockerd` shortcut of Docker Daemon which is the core component of the Docker platform. It is responsible for building, running, and managing Docker containers. When you install Docker on your system, it includes the Docker Engine along with other tools and services.
+- `Containerd` shortcut of Container Daemon which manages the complete container lifecycle of its host system, from image transfer and storage to container execution and supervision to low-level storage to network attachments and beyond.
 ### II. Docker Architecture <a name="docker-architecture"></a>
 - `Docker` uses a client-server architecture. The `Docker client` talks to the `Docker daemon`, which does the heavy lifting of building, running, and distributing your `Docker containers`. The Docker client and daemon can run on the same system, or you can connect a Docker client to a remote Docker daemon. The Docker client and daemon communicate using a REST API, over UNIX sockets or a network interface. Another Docker client is Docker Compose, that lets you work with applications consisting of a set of containers.
 
@@ -80,7 +79,7 @@ have to use docker compose.
 There are more commands to use with docker but in this table I specified the top essential Docker commands that you might need in the process of creating your own containers.
 
 ### IV. How Docker Works ? <a name="how-docker-works"></a>
-   Docker is written in the [Go programming language](https://golang.org/) and takes advantage of several features of the Linux kernel to deliver its functionality. Docker uses a technology called `namespaces` to provide the isolated workspace called the container. When you run a container, Docker creates a set of namespaces for that container.
+   Docker is written in the `Go programming language` and takes advantage of several features of the Linux kernel to deliver its functionality. Docker uses a technology called `namespaces` to provide the isolated workspace called the container. When you run a container, Docker creates a set of namespaces for that container.
    
    The process of building Docker images and running containers in relation to Docker, containerd, and runc.
 
@@ -150,17 +149,21 @@ There are more commands to use with docker but in this table I specified the top
 
    When Docker Desktop is installed on a Windows machine with Hyper-V enabled, it creates a Linux-based virtual machine (VM) known as the "MobyLinuxVM" to host and manage the Linux containers. This VM runs alongside the Windows operating system and provides the necessary infrastructure for running Docker containers.
 
-## III. MariaDB <a name=" "></a>
+## III. MariaDB <a name="mariadb"></a>
 
-### Definition <a name=" "></a>
+### I. Definition <a name="mariadb-definition"></a>
 
-### What is a Database? <a name=" "></a>
+   - `MariaDB` is an open source database to help store and organize data. It’s similar to MySQL (a database management system) and, in fact, a fork to MySQL. The MariaDB database is used for various purposes such as data warehousing, e-commerce, enterprise-level features, and logging applications.
+   - `Database` is a place to store information that you can quickly retrieve and use where you need it. Compared to writing information on a piece of paper or in a Word document, a database saves all your information in tables so that you can easily retrieve each individual entry in a systematic and precise way.
 
-### History of MariaDB <a name=" "></a>
+### II. History of MariaDB <a name="history-of-mariadb"></a>
+   
+   - `MySQL` was initially completely open-source , then it was bought by `Oracle`, since then several organizations have become concerned about Oracle's possibility of making paid its software.
+   To prevent this, the `MariaDB` foundation creates a version almost identical to MySQL, but completely **open-source**.
 
-### MariaDB CMD <a name=" "></a>
+### III. MariaDB CMD <a name="mariadb-cmd"></a>
 
-### MariaDB Configuration <a name=" "></a>
+### IV. MariaDB Configuration <a name="mariadb-configuration"></a>
 
 ## IV. WordPress <a name=" "></a>
 
