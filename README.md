@@ -44,7 +44,7 @@ have to use docker compose.
 
 ### I. Definition <a name="docker-definition"></a>
 - `Docker` is a tool that can package an application and its dependencies into an isolated container.
-- `Docker Container` is an isolated workspace.
+- `Docker Container` is a lightweight, standalone, and executable software package that encapsulates an application and its dependencies, ensuring consistent and reliable execution across different computing environments. It provides a standardized approach to package and deploy applications, allowing them to run in isolation with their own filesystem, libraries, and configuration settings.
 - `Docker image` is a blueprint or a template for creating Docker containers. It provides all the necessary instructions and dependencies required to create and run a containerized application.
 - `Docker compose` is a tool that allows you to define and manage multi-container Docker applications. It provides a convenient way to describe the services, networks, and volumes required for your application in a declarative YAML file.
 - `Docker volume` is a persistent data storage mechanism that allows containers to share and store data outside of their individual file systems. Volumes are used to persist and share data between containers, as well as between containers and the host machine.
