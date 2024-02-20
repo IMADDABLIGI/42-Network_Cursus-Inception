@@ -20,6 +20,7 @@
 5. [Nginx](#nginx)
    - [Definition](#nginx-definition)
    - [HTTPS](#https)
+   - [HTTPS Certification](#https-cert)
    - [SSL](#ssl)
    - [HOW DOES SSL WORKS ?](#how-ssl)
    - [Nginx Configuration](#nginx-configuration)
@@ -36,6 +37,8 @@ have to use docker compose.
   <p style="text-align: center;">
   <a href="https://cdn.intra.42.fr/pdf/pdf/103030/en.subject.pdf" target="_blank">Inception Subject Link</a>
 </p>
+
+---
 
 ## II. Docker <a name="docker"></a>
 
@@ -150,6 +153,8 @@ There are more commands to use with docker but in this table I specified the top
 
    When Docker Desktop is installed on a Windows machine with Hyper-V enabled, it creates a Linux-based virtual machine (VM) known as the "MobyLinuxVM" to host and manage the Linux containers. This VM runs alongside the Windows operating system and provides the necessary infrastructure for running Docker containers.
 
+---
+
 ## III. MariaDB <a name="mariadb"></a>
 
 ### I. Definition <a name="mariadb-definition"></a>
@@ -208,6 +213,8 @@ However, for WordPress to connect to the MariaDB server, we need to change the v
 
 After making this change, WordPress will be able to establish a connection with the MariaDB server, enabling proper communication between the two.
 
+---
+
 ## IV. WordPress <a name="wordpress"></a>
 
 ### Definition <a name="wordpress_definition"></a>
@@ -239,7 +246,9 @@ After making this change, WordPress will be able to establish a connection with 
     wp core install --url=$DOMAIN_NAME --title=INCEPTION --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL --allow-root --path=/var/www/html
     wp user create $WP_USER $WP_USER_EMAIL --role=author --user_pass=$WP_USER_PASSWORD --allow-root --path=/var/www/html
 - In this final step, we use WP-CLI to install WordPress with the specified configuration. We provide essential details such as the website URL, site title, and administrative user credentials. This command automates the installation process, creating the necessary database tables, generating encryption keys, and setting up the initial administrative user. Additionally, we create a new user with the author role, allowing them to contribute and manage content on the WordPress website.
-  
+
+---
+
 ## V. Nginx <a name="nginx"></a>
 
 ### I. Definition <a name="nginx-definition"></a>
@@ -248,20 +257,21 @@ After making this change, WordPress will be able to establish a connection with 
 ### II. HTTPS <a name="https"></a>
 - `HTTPS` Hypertext Transfer Protocol Secure is a secure version of HTTP. This protocol enables secure communication between a client (e.g. web browser) and a server (e.g. web server) by using encryption. HTTPS uses Transport Layer Security (TLS) protocol or its predecessor Secure Sockets Layer (SSL) for encryption.
 
-<p align="center">
-  <img src="Assets/HTTPS.png" width="500">
-</p>
 
    The original use for HTTPS was for ecommerce transactions, email, and other sensitive data transfers. Today it has become the standard for all websites.
    HTTPS uses a well-known TCP port 443. If the port is not specified in a URL, browsers will use this port when sending HTTPS request.
 
-#### HTTPS Certification
+### III. HTTPS Certification <a name="https-cert"></a>
 - `HTTPS` employs `SSL` (Secure Socket Layer) or its successor, `TLS` (Transport Layer Security), to establish an encrypted connection between a web server and a client's browser. SSL/TLS certificates play a crucial role in enabling HTTPS by verifying the authenticity and identity of the server. These certificates are issued by trusted Certificate Authorities and contain cryptographic keys that facilitate secure communication. When a website has a valid SSL/TLS certificate installed, it allows for the encryption of sensitive information, such as login credentials and financial transactions, providing an essential layer of security and ensuring the privacy and integrity of data transmitted between the server and the client.
 
-### III. SSL <a name="ssl"></a>
+<p align="center">
+  <img src="Assets/https-ssl.jpeg" width="800">
+</p>
+
+### IV. SSL <a name="ssl"></a>
 - `SSL` Secure Sockets Layer is a standard security technology for establishing an encrypted link between a server and a client—typically a web server (website) and a browser, or a mail server and a mail client (e.g., Outlook). It is more widely known than `TLS`, or Transport Layer Security, the successor technology of SSL.
 
-### IV. HOW DOES SSL WORKS ? <a name="how-ssl"></a>
+### V. HOW DOES SSL WORKS ? <a name="how-ssl"></a>
 
 When a browser attempts to access a website that is secured by SSL, the browser and the web server establish an SSL connection using a process called an “SSL Handshake” (see diagram below). Note that the SSL Handshake is invisible to the user and happens instantaneously.
 
@@ -278,6 +288,37 @@ Because encrypting and decrypting with private and public key takes a lot of pro
 5. **Server** and Browser now encrypt all transmitted data with the session key.
 
 
-### Nginx Configuration
+### Nginx Configuration <a name="nginx-configuration"></a>
+- The behavior of the Nginx server is determined by its configuration file, typically located at `/etc/nginx/sites-available/default`. This configuration file serves as a vital blueprint, defining how Nginx operates. Within this file, I have made specific adjustments to customize the server's behavior according to the desired requirements and functionality of the subject.
+
+      server {
+           listen 443 ssl;
+           ssl_protocols TLSv1.3;
+           ssl_certificate ${CERTS_PATH};
+           ssl_certificate_key /etc/nginx/ssl/NG.key;
+
+           # Set the root directory, index files, and server name
+           root /var/www/html;
+           server_name ${DOMAIN_NAME};
+           index index.php index.html index.htm;
+
+           location ~ \.php$ {
+           # Include the FastCGI configuration for PHP
+           include snippets/fastcgi-php.conf;
+           fastcgi_pass wordpress:9000;
+          }
+      }
+
+   - **listen 443 ssl;** : This line specifies that the server should listen on port 443 (the default HTTPS port) and use SSL/TLS for secure communication.
+   - **ssl_protocols TLSv1.3;** : It sets the desired SSL/TLS protocol version to TLS 1.3 for secure connections.
+   - **ssl_certificate ${CERTS_PATH};** : This directive provides the path to the SSL/TLS certificate file used for encryption. ${CERTS_PATH} is a placeholder that should be replaced with the actual certificate path.
+   -  **ssl_certificate_key /etc/nginx/ssl/NG.key;** : It specifies the path to the private key corresponding to the SSL/TLS certificate.
+   - **root /var/www/html;**: Sets the root directory where the web server will look for files to serve.
+   - **server_name ${DOMAIN_NAME};** : Specifies the domain name associated with the server block.
+   - **index index.php index.html index.htm;** : Defines the order in which the server will look for index files (e.g., index.php, index.html, index.htm).
+   - **location ~ \.php$ { ... }** : This block handles requests for PHP files. It includes a configuration file (snippets/fastcgi-php.conf) that manages the FastCGI process for PHP and forwards requests to the WordPress container at wordpress:9000.
+
+
+
 
 ## VI. Resources
