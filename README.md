@@ -191,7 +191,7 @@ There are more commands to use with docker but in this table I specified the top
 
 You might not need all this commands for the `Inception` project since the `Wordpress` will do all the job for us. But at least you need to know how to acces and reveal the tables inside your mariadb database;
 
-**Here's an example of accesing to a Wordpress Database and revaling data inside of the table `wp_users`:**
+**Here's an example of accesing to a Wordpress Database and revealing all data inside of the table `wp_users`:**
 
 <p align="left">
   <img src="Assets/Mariadb_CMD.png" width="900">
@@ -207,17 +207,41 @@ However, for WordPress to connect to the MariaDB server, we need to change the v
 
 After making this change, WordPress will be able to establish a connection with the MariaDB server, enabling proper communication between the two.
 
-## IV. WordPress <a name=" "></a>
+## IV. WordPress <a name="wordpress"></a>
 
-### Definition <a name=" "></a>
+### Definition <a name="wordpress_definition"></a>
 
-WordPress is a popular open-source content management system (CMS)... 
+- `WordPress` is a popular content management system (CMS) that allows users to create and manage websites and blogs easily. It is written in PHP and uses a MySQL or MariaDB database to store content and settings.
 
-### WordPress Configuration <a name=" "></a>
+### WordPress Configuration <a name="wordpress-configuration"></a>
 
-## V. Nginx <a name=" "></a>
+#### Step 1: Set up WP-CLI
+    curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+    chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
+   - In this step, we set up WP-CLI, a powerful command-line tool for managing WordPress installations. We download the WP-CLI executable, make it executable, and move it to the /usr/local/bin directory. This ensures that WP-CLI is globally accessible from the command line, enabling us to interact with WordPress using simple and convenient commands.
 
-### Definition <a name=" "></a>
+#### Step 2: Download WordPress
+    cd /var/www/html
+    wp core download --allow-root
+    mv wp-config-sample.php wp-config.php
+- In this step, we navigate to the desired directory where we want to install WordPress, typically the web server's document root. We use WP-CLI to download the latest version of the WordPress core files directly from the official WordPress repository.
+
+#### Step 3: Configure WordPress
+    wp config set SERVER_PORT 3306 --allow-root
+    wp config set DB_NAME $DB_NAME --allow-root --path=/var/www/html
+    wp config set DB_USER $MARIA_DB_USER --allow-root --path=/var/www/html
+    wp config set DB_PASSWORD $MARIA_DB_USER_PASSWORD --allow-root --path=/var/www/html
+    wp config set DB_HOST 'mariadb:3306' --allow-root --path=/var/www/html
+- In this step, we use WP-CLI to configure the WordPress installation by modifying the wp-config.php file. We set the server port for the database connection, providing the necessary information for connecting to the MariaDB server. We specify the database name, username, password, and host, ensuring that WordPress can establish a secure and reliable connection to the database server.
+
+#### Step 4: Install WordPress
+    wp core install --url=$DOMAIN_NAME --title=INCEPTION --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL --allow-root --path=/var/www/html
+    wp user create $WP_USER $WP_USER_EMAIL --role=author --user_pass=$WP_USER_PASSWORD --allow-root --path=/var/www/html
+- In this final step, we use WP-CLI to install WordPress with the specified configuration. We provide essential details such as the website URL, site title, and administrative user credentials. This command automates the installation process, creating the necessary database tables, generating encryption keys, and setting up the initial administrative user. Additionally, we create a new user with the author role, allowing them to contribute and manage content on the WordPress website.
+  
+## V. Nginx <a name="nginx"></a>
+
+### Definition <a name="nginx-definition"></a>
 
 ### HTTPS 
 
