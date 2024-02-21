@@ -15,8 +15,9 @@
    - [III. MariaDB CMD](#mariadb-cmd)
    - [IV. MariaDB Configuration](#mariadb-configuration)
 4. [WordPress](#wordpress)
-   - [Definition](#wordpress-definition)
-   - [WordPress Configuration](#wordpress-configuration)
+   - [I. Definition](#wordpress-definition)
+   - [II. WordPress Configuration](#wordpress-configuration)
+   - [III. PHP-FPM](#fpm)
 5. [Nginx](#nginx)
    - [I. Definition](#nginx-definition)
    - [II. HTTPS](#https)
@@ -219,11 +220,11 @@ After making this change, WordPress will be able to establish a connection with 
 
 ## IV. WordPress <a name="wordpress"></a>
 
-### Definition <a name="wordpress-definition"></a>
+### I. Definition <a name="wordpress-definition"></a>
 
 - `WordPress` is a popular content management system (CMS) that allows users to create and manage websites and blogs easily. It is written in PHP and uses a MySQL or MariaDB database to store content and settings.
 
-### WordPress Configuration <a name="wordpress-configuration"></a>
+### II. WordPress Configuration <a name="wordpress-configuration"></a>
 
 #### Step 1: Set up WP-CLI
     curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -248,6 +249,30 @@ After making this change, WordPress will be able to establish a connection with 
     wp core install --url=$DOMAIN_NAME --title=INCEPTION --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL --allow-root --path=/var/www/html
     wp user create $WP_USER $WP_USER_EMAIL --role=author --user_pass=$WP_USER_PASSWORD --allow-root --path=/var/www/html
 - In this final step, we use WP-CLI to install WordPress with the specified configuration. We provide essential details such as the website URL, site title, and administrative user credentials. This command automates the installation process, creating the necessary database tables, generating encryption keys, and setting up the initial administrative user. Additionally, we create a new user with the author role, allowing them to contribute and manage content on the WordPress website.
+
+### III. PHP_FPM <a name="fpm"></a>
+- In computing, **Common Gateway Interface** `CGI` is an interface specification that enables web servers to execute an external program to process HTTP/S user requests.
+   A typical use case occurs when a web user submits a web form] on a web page that uses CGI. The form's data is sent to the web server within an HTTP request with a URL denoting a CGI script. The web server then launches the CGI script in a new computer process, passing the form data to it. The output of the CGI script, usually in the form of `HTML`, is returned by the script to the Web server, and the server relays it back to the browser as its response to the browser's request.
+-  Instead of creating a new process for each request, `FastCGI` uses persistent processes to handle a series of requests. These processes are owned by the FastCGI server, not the web server.
+  To service an incoming request, the web server sends environment variable information and the page request to a FastCGI process over either a Unix domain socket, a named pipe, or a Transmission Control Protocol (TCP) connection. Responses are returned from the process to the web server over the same connection, and the web server then delivers that response to the end user. The connection may be closed at the end of a response, but both web server and FastCGI service processes persist.
+- `PHP-FPM` (PHP FastCGI Process Manager) is a PHP implementation of the FastCGI protocol. PHP-FPM serves as a FastCGI process manager specifically designed for PHP, providing advanced features and optimizations for handling PHP requests.
+
+<p align="center">
+  <img src="Assets/FCGI.jpeg" width="800">
+</p>
+
+### PHP-FPM Configuartion**
+
+#### Step 1: Install php-fpm
+    apt install -y php-fpm
+
+#### Step 2: Configure PHP-FPM to Listen to All IP Addresses
+    sed -i 's#listen = /run/php/php7.4-fpm.sock#listen = 0.0.0.0:9000#' /etc/php/7.4/fpm/pool.d/www.conf
+   - the sed command is used to modify the `www.conf` file, replacing the line that specifies the listening socket with a new line that makes PHP-FPM listen on all IP addresses (0.0.0.0) on port 9000. This allows PHP-FPM to accept connections from any IP address on the network.
+
+#### Step 3: Starts PHP-FPM in the foreground
+    /usr/sbin/php-fpm7.4 -F
+- This command starts PHP-FPM in the foreground (-F flag) using the PHP version 7.4.
 
 ---
 
