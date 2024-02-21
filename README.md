@@ -368,6 +368,7 @@ Because encrypting and decrypting with private and public key takes a lot of pro
 - [Wordpress Configuration CMD](https://developer.wordpress.org/cli/commands/config/set/)
 - [Install Wordpress](https://developer.wordpress.org/cli/commands/core/)
 - [Create WP user](https://developer.wordpress.org/cli/commands/user/create/)
+- [FCGI](https://en.wikipedia.org/wiki/FastCGI)
 
 ### Nginx : <a name="rs-nginx"></a>
 - [SSL](https://www.digicert.com/what-is-an-ssl-certificate) - [SSL](https://www.cloudflare.com/en-gb/learning/ssl/what-is-ssl/)
