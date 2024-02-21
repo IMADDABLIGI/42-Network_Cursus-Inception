@@ -44,8 +44,8 @@ have to use docker compose.
 
 ### I. Definition <a name="docker-definition"></a>
 - `Docker` is a tool that can package an application and its dependencies into an isolated container.
-- `Docker Container` is a lightweight, standalone, and executable software package that encapsulates an application and its dependencies, ensuring consistent and reliable execution across different computing environments. It provides a standardized approach to package and deploy applications, allowing them to run in isolation with their own filesystem, libraries, and configuration settings.
 - `Docker image` is a blueprint or a template for creating Docker containers. It provides all the necessary instructions and dependencies required to create and run a containerized application.
+- `Docker Container` is a lightweight, standalone, and executable software package that encapsulates an application and its dependencies, ensuring consistent and reliable execution across different computing environments. It provides a standardized approach to package and deploy applications, allowing them to run in isolation with their own filesystem, libraries, and configuration settings.
 - `Docker compose` is a tool that allows you to define and manage multi-container Docker applications. It provides a convenient way to describe the services, networks, and volumes required for your application in a declarative YAML file.
 - `Docker volume` is a persistent data storage mechanism that allows containers to share and store data outside of their individual file systems. Volumes are used to persist and share data between containers, as well as between containers and the host machine.
 - `Docker network` is a virtual infrastructure that enables communication between containers and the host machine. Docker networks provide isolation, security, and flexibility for containerized applications.
@@ -84,14 +84,14 @@ There are more commands to use with docker but in this table I specified the top
 
 ### IV. How Docker Works ? <a name="how-docker-works"></a>
    Docker is written in the `Go programming language` and takes advantage of several features of the Linux kernel to deliver its functionality. Docker uses a technology called `namespaces` to provide the isolated workspace called the container. When you run a container, Docker creates a set of namespaces for that container.
-   
-   The process of building Docker images and running containers in relation to Docker, containerd, and runc.
 
 
 <p align="center">
   <img src="Assets/containerd.png" width="600">
 </p>
 
+
+**The process of building Docker images and running containers in relation to Docker, containerd, and runc.**
 
 **Building Docker Images:**
 
@@ -128,7 +128,7 @@ There are more commands to use with docker but in this table I specified the top
    When it comes to Docker containers, cgroups play an important role in resource management and isolation. Docker leverages cgroups to allocate and limit system resources for each container, preventing one container from monopolizing system resources and impacting the performance of other containers or the host system.
 
 **NOTE :** 
-   when a process inside a container creates a child process the new child process by default inherits the cgroups and namespaces of he’s parent process.
+When a process inside a container creates a child process the new child process by default inherits the cgroups and namespaces of he’s parent process.
 
 <p align="center">
   <img src="Assets/namespaces.png" width="500">
@@ -139,7 +139,7 @@ There are more commands to use with docker but in this table I specified the top
 
 **LinuxOS :**
 
-   On Linux Docker containers share the host operating system's kernel, which means they run on the same kernel as the host machine. This allows containers to be lightweight and provides efficient resource utilization.
+   On `Linux` Docker containers share the host operating system's kernel, which means they run on the same kernel as the host machine. This allows containers to be lightweight and provides efficient resource utilization.
 
 **MacOS :**
 
@@ -149,7 +149,7 @@ There are more commands to use with docker but in this table I specified the top
 
 **WindowsOS:**
 
-   On Windows, Docker Desktop utilizes a different lightweight virtualization technology called "Hyper-V" to run Linux containers. Hyper-V is a native hypervisor developed by Microsoft and is included in certain editions of Windows, such as Windows 10 Professional and Enterprise.
+   On `Windows`, Docker Desktop utilizes a different lightweight virtualization technology called "Hyper-V" to run Linux containers. Hyper-V is a native hypervisor developed by Microsoft and is included in certain editions of Windows, such as Windows 10 Professional and Enterprise.
 
    When Docker Desktop is installed on a Windows machine with Hyper-V enabled, it creates a Linux-based virtual machine (VM) known as the "MobyLinuxVM" to host and manage the Linux containers. This VM runs alongside the Windows operating system and provides the necessary infrastructure for running Docker containers.
 
@@ -181,20 +181,19 @@ There are more commands to use with docker but in this table I specified the top
 | use `(name of a database)`; | Acces to that specific database. |
 | create database `(name of new database)`; | Create a database. |
 | show tables; | Reveal all tables of that database. |
-| create table `(name of new table)(arg1, arg2,…)`; | Creating a new table. |
+| create table `(name of new table)(arg1, arg2,…)`; | Create a new table. |
 | explain `(name of a table)`; | Reveal all the arguments of that table. |
 | select * from `(name of a table)`; | Reveal the table values. |
 | insert `(table()) value(arg1, arg2, arg3..)`; | Insert values to a specific table. |
 | update `(table)` set `(the value to change)`=`new value` where std_id=`2`; | Change an added value. |
 | select user from `mysql.user`; | Reveal mariadb users. |
-| create user `user`@`%`; | Creat user, `%` represents the host or the location from which the user is allowed to connect. The '%' wildcard symbol means that the user can connect from any host. If you want to restrict connections to specific hosts, you can replace '%' with the desired hostname or IP address. |
+| create user `user`@`%`; | Create user, `%` represents the host or the location from which the user is allowed to connect. The '%' wildcard symbol means that the user can connect from any host. If you want to restrict connections to specific hosts, you can replace '%' with the desired hostname or IP address. |
 | create user `user`@`localhost` identified by `password`; | Create user with a password, the localhost will make the user only acces the mariadb from the hostmachine that's running the mariadb server.|
 | drop user `user`@`localhost`; | Drop user. |
 | GRANT ALL PRIVILEGES ON `*.*` TO `user`@`%`; | This command grants all privileges (ALL PRIVILEGES) to the user `user` for all databases `(*.*)` and all tables within those databases. |
 | FLUSH PRIVILEGES; | Ensure the changes take effect. |
 
 **NOTE :** 
-
 You might not need all this commands for the `Inception` project since the `Wordpress` will do all the job for us. But at least you need to know how to acces and reveal the tables inside your mariadb database;
 
 **Here's an example of accesing to a Wordpress Database and revealing all data inside of the table `wp_users`:**
