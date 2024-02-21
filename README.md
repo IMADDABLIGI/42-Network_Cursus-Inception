@@ -317,7 +317,21 @@ Because encrypting and decrypting with private and public key takes a lot of pro
    - **index index.php index.html index.htm;** : Defines the order in which the server will look for index files (e.g., index.php, index.html, index.htm).
    - **location ~ \.php$ { ... }** : This block handles requests for PHP files. It includes a configuration file (snippets/fastcgi-php.conf) that manages the FastCGI process for PHP and forwards requests to the WordPress container at wordpress:9000.
 
-
-
-
 ## VI. Ressources <a name="ressources"></a>
+
+### Docker :
+- [Docker Overview](https://docs.docker.com/get-started/overview/)
+- [Docker (YTB-1)](https://www.youtube.com/watch?v=eGz9DS-aIeY) - [Docker (YTB-2)](https://www.youtube.com/watch?v=pTFZFxd4hOI)
+- [Docker Network (YTB)](https://www.youtube.com/watch?v=bKFMS5C4CG0&t=615s)
+- [Docker Volume (YTB)](https://www.youtube.com/watch?v=p2PH_YPCsis)
+- [Docker Network and Volume](https://webdock.io/en/docs/how-guides/docker-guides/how-to-create-and-manage-docker-networks-and-docker-volumes)
+- [Docker Compose (YTB-1)](https://www.youtube.com/watch?v=DM65_JyGxCo&t=1s) - [Docker Compose (YTB-2)](https://www.youtube.com/watch?v=Qw9zlE3t8Ko&t=9s)
+- [How Docker works ?](https://www.youtube.com/watch?v=-YnMr1lj4Z8)
+- [Namespaces - Cgroups (1)](https://resources.infosecinstitute.com/topics/general-security/how-docker-primitives-secure-container-environments/#:~:text=Namespaces%20are%20a%20feature%20of,the%20containers%20from%20the%20host.) - [Namespaces - Cgroups (2)](https://medium.com/@kasunmaduraeng/docker-namespace-and-cgroups-dece27c209c7)
+- [Containerd with Namespaces and Cgroups](https://faun.pub/kubernetes-story-linux-namespaces-and-cgroups-what-are-containers-made-from-d544ac9bd622)
+- [Namespaces - Cgroups (YTB)](https://www.youtube.com/watch?v=el7768BNUPw)
+
+### NGinx:
+- [Nginx Configuration](https://ubiq.co/tech-blog/nginx-ssl-configuration-step-step-details/)
+- [youtube](https://www.youtube.com/watch?v=hExRDVZHhig)
+- [SSL](https://www.digicert.com/what-is-an-ssl-certificate)
