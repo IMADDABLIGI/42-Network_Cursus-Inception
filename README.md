@@ -18,12 +18,12 @@
    - [Definition](#wordpress-definition)
    - [WordPress Configuration](#wordpress-configuration)
 5. [Nginx](#nginx)
-   - [Definition](#nginx-definition)
-   - [HTTPS](#https)
-   - [HTTPS Certification](#https-cert)
-   - [SSL](#ssl)
-   - [HOW DOES SSL WORKS ?](#how-ssl)
-   - [Nginx Configuration](#nginx-configuration)
+   - [I. Definition](#nginx-definition)
+   - [II. HTTPS](#https)
+   - [III. HTTPS Certification](#https-cert)
+   - [IV. SSL](#ssl)
+   - [V. HOW DOES SSL WORKS ?](#how-ssl)
+   - [VI. Nginx Configuration](#nginx-configuration)
 6. [Ressources](#ressources)
    - [Docker](#rs-docker)
    - [Mariadb](#rs-mariadb)
@@ -290,7 +290,7 @@ Because encrypting and decrypting with private and public key takes a lot of pro
 5. **Server** and Browser now encrypt all transmitted data with the session key.
 
 
-### Nginx Configuration <a name="nginx-configuration"></a>
+### VI. Nginx Configuration <a name="nginx-configuration"></a>
 - The behavior of the Nginx server is determined by its configuration file, typically located at `/etc/nginx/sites-available/default`. This configuration file serves as a vital blueprint, defining how Nginx operates. Within this file, I have made specific adjustments to customize the server's behavior according to the desired requirements and functionality of the subject.
 
       server {
