@@ -18,13 +18,17 @@
    - [Definition](#wordpress-definition)
    - [WordPress Configuration](#wordpress-configuration)
 5. [Nginx](#nginx)
-   - [Definition](#nginx-definition)
-   - [HTTPS](#https)
-   - [SSL](#ssl)
-   - [HOW DOES SSL WORKS ?](#how-ssl)
-   - [Nginx Configuration](#nginx-configuration)
-6. [Resources](#resources)
-
+   - [I. Definition](#nginx-definition)
+   - [II. HTTPS](#https)
+   - [III. HTTPS Certification](#https-cert)
+   - [IV. SSL](#ssl)
+   - [V. HOW DOES SSL WORKS ?](#how-ssl)
+   - [VI. Nginx Configuration](#nginx-configuration)
+6. [Ressources](#ressources)
+   - [Docker](#rs-docker)
+   - [Mariadb](#rs-mariadb)
+   - [Wordpress](#rs-wordpress)
+   - [Nginx](#rs-nginx)
 ---
 
 ## I. Subject Requirements <a name="subject-requirements"></a>
@@ -37,12 +41,14 @@ have to use docker compose.
   <a href="https://cdn.intra.42.fr/pdf/pdf/103030/en.subject.pdf" target="_blank">Inception Subject Link</a>
 </p>
 
+---
+
 ## II. Docker <a name="docker"></a>
 
 ### I. Definition <a name="docker-definition"></a>
 - `Docker` is a tool that can package an application and its dependencies into an isolated container.
-- `Docker Container` is an isolated workspace.
 - `Docker image` is a blueprint or a template for creating Docker containers. It provides all the necessary instructions and dependencies required to create and run a containerized application.
+- `Docker Container` is a lightweight, standalone, and executable software package that encapsulates an application and its dependencies, ensuring consistent and reliable execution across different computing environments. It provides a standardized approach to package and deploy applications, allowing them to run in isolation with their own filesystem, libraries, and configuration settings.
 - `Docker compose` is a tool that allows you to define and manage multi-container Docker applications. It provides a convenient way to describe the services, networks, and volumes required for your application in a declarative YAML file.
 - `Docker volume` is a persistent data storage mechanism that allows containers to share and store data outside of their individual file systems. Volumes are used to persist and share data between containers, as well as between containers and the host machine.
 - `Docker network` is a virtual infrastructure that enables communication between containers and the host machine. Docker networks provide isolation, security, and flexibility for containerized applications.
@@ -81,14 +87,14 @@ There are more commands to use with docker but in this table I specified the top
 
 ### IV. How Docker Works ? <a name="how-docker-works"></a>
    Docker is written in the `Go programming language` and takes advantage of several features of the Linux kernel to deliver its functionality. Docker uses a technology called `namespaces` to provide the isolated workspace called the container. When you run a container, Docker creates a set of namespaces for that container.
-   
-   The process of building Docker images and running containers in relation to Docker, containerd, and runc.
 
 
 <p align="center">
   <img src="Assets/containerd.png" width="600">
 </p>
 
+
+**The process of building Docker images and running containers in relation to Docker, containerd, and runc.**
 
 **Building Docker Images:**
 
@@ -125,7 +131,7 @@ There are more commands to use with docker but in this table I specified the top
    When it comes to Docker containers, cgroups play an important role in resource management and isolation. Docker leverages cgroups to allocate and limit system resources for each container, preventing one container from monopolizing system resources and impacting the performance of other containers or the host system.
 
 **NOTE :** 
-   when a process inside a container creates a child process the new child process by default inherits the cgroups and namespaces of he’s parent process.
+When a process inside a container creates a child process the new child process by default inherits the cgroups and namespaces of he’s parent process.
 
 <p align="center">
   <img src="Assets/namespaces.png" width="500">
@@ -136,7 +142,7 @@ There are more commands to use with docker but in this table I specified the top
 
 **LinuxOS :**
 
-   On Linux Docker containers share the host operating system's kernel, which means they run on the same kernel as the host machine. This allows containers to be lightweight and provides efficient resource utilization.
+   On `Linux` Docker containers share the host operating system's kernel, which means they run on the same kernel as the host machine. This allows containers to be lightweight and provides efficient resource utilization.
 
 **MacOS :**
 
@@ -146,9 +152,11 @@ There are more commands to use with docker but in this table I specified the top
 
 **WindowsOS:**
 
-   On Windows, Docker Desktop utilizes a different lightweight virtualization technology called "Hyper-V" to run Linux containers. Hyper-V is a native hypervisor developed by Microsoft and is included in certain editions of Windows, such as Windows 10 Professional and Enterprise.
+   On `Windows`, Docker Desktop utilizes a different lightweight virtualization technology called "Hyper-V" to run Linux containers. Hyper-V is a native hypervisor developed by Microsoft and is included in certain editions of Windows, such as Windows 10 Professional and Enterprise.
 
    When Docker Desktop is installed on a Windows machine with Hyper-V enabled, it creates a Linux-based virtual machine (VM) known as the "MobyLinuxVM" to host and manage the Linux containers. This VM runs alongside the Windows operating system and provides the necessary infrastructure for running Docker containers.
+
+---
 
 ## III. MariaDB <a name="mariadb"></a>
 
@@ -176,20 +184,19 @@ There are more commands to use with docker but in this table I specified the top
 | use `(name of a database)`; | Acces to that specific database. |
 | create database `(name of new database)`; | Create a database. |
 | show tables; | Reveal all tables of that database. |
-| create table `(name of new table)(arg1, arg2,…)`; | Creating a new table. |
+| create table `(name of new table)(arg1, arg2,…)`; | Create a new table. |
 | explain `(name of a table)`; | Reveal all the arguments of that table. |
 | select * from `(name of a table)`; | Reveal the table values. |
 | insert `(table()) value(arg1, arg2, arg3..)`; | Insert values to a specific table. |
 | update `(table)` set `(the value to change)`=`new value` where std_id=`2`; | Change an added value. |
 | select user from `mysql.user`; | Reveal mariadb users. |
-| create user `user`@`%`; | Creat user, `%` represents the host or the location from which the user is allowed to connect. The '%' wildcard symbol means that the user can connect from any host. If you want to restrict connections to specific hosts, you can replace '%' with the desired hostname or IP address. |
+| create user `user`@`%`; | Create user, `%` represents the host or the location from which the user is allowed to connect. The '%' wildcard symbol means that the user can connect from any host. If you want to restrict connections to specific hosts, you can replace '%' with the desired hostname or IP address. |
 | create user `user`@`localhost` identified by `password`; | Create user with a password, the localhost will make the user only acces the mariadb from the hostmachine that's running the mariadb server.|
 | drop user `user`@`localhost`; | Drop user. |
 | GRANT ALL PRIVILEGES ON `*.*` TO `user`@`%`; | This command grants all privileges (ALL PRIVILEGES) to the user `user` for all databases `(*.*)` and all tables within those databases. |
 | FLUSH PRIVILEGES; | Ensure the changes take effect. |
 
 **NOTE :** 
-
 You might not need all this commands for the `Inception` project since the `Wordpress` will do all the job for us. But at least you need to know how to acces and reveal the tables inside your mariadb database;
 
 **Here's an example of accesing to a Wordpress Database and revealing all data inside of the table `wp_users`:**
@@ -208,9 +215,11 @@ However, for WordPress to connect to the MariaDB server, we need to change the v
 
 After making this change, WordPress will be able to establish a connection with the MariaDB server, enabling proper communication between the two.
 
+---
+
 ## IV. WordPress <a name="wordpress"></a>
 
-### Definition <a name="wordpress_definition"></a>
+### Definition <a name="wordpress-definition"></a>
 
 - `WordPress` is a popular content management system (CMS) that allows users to create and manage websites and blogs easily. It is written in PHP and uses a MySQL or MariaDB database to store content and settings.
 
@@ -239,7 +248,9 @@ After making this change, WordPress will be able to establish a connection with 
     wp core install --url=$DOMAIN_NAME --title=INCEPTION --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL --allow-root --path=/var/www/html
     wp user create $WP_USER $WP_USER_EMAIL --role=author --user_pass=$WP_USER_PASSWORD --allow-root --path=/var/www/html
 - In this final step, we use WP-CLI to install WordPress with the specified configuration. We provide essential details such as the website URL, site title, and administrative user credentials. This command automates the installation process, creating the necessary database tables, generating encryption keys, and setting up the initial administrative user. Additionally, we create a new user with the author role, allowing them to contribute and manage content on the WordPress website.
-  
+
+---
+
 ## V. Nginx <a name="nginx"></a>
 
 ### I. Definition <a name="nginx-definition"></a>
@@ -248,20 +259,21 @@ After making this change, WordPress will be able to establish a connection with 
 ### II. HTTPS <a name="https"></a>
 - `HTTPS` Hypertext Transfer Protocol Secure is a secure version of HTTP. This protocol enables secure communication between a client (e.g. web browser) and a server (e.g. web server) by using encryption. HTTPS uses Transport Layer Security (TLS) protocol or its predecessor Secure Sockets Layer (SSL) for encryption.
 
-<p align="center">
-  <img src="Assets/HTTPS.png" width="500">
-</p>
 
    The original use for HTTPS was for ecommerce transactions, email, and other sensitive data transfers. Today it has become the standard for all websites.
    HTTPS uses a well-known TCP port 443. If the port is not specified in a URL, browsers will use this port when sending HTTPS request.
 
-#### HTTPS Certification
+### III. HTTPS Certification <a name="https-cert"></a>
 - `HTTPS` employs `SSL` (Secure Socket Layer) or its successor, `TLS` (Transport Layer Security), to establish an encrypted connection between a web server and a client's browser. SSL/TLS certificates play a crucial role in enabling HTTPS by verifying the authenticity and identity of the server. These certificates are issued by trusted Certificate Authorities and contain cryptographic keys that facilitate secure communication. When a website has a valid SSL/TLS certificate installed, it allows for the encryption of sensitive information, such as login credentials and financial transactions, providing an essential layer of security and ensuring the privacy and integrity of data transmitted between the server and the client.
 
-### III. SSL <a name="ssl"></a>
+<p align="center">
+  <img src="Assets/https-ssl.jpeg" width="800">
+</p>
+
+### IV. SSL <a name="ssl"></a>
 - `SSL` Secure Sockets Layer is a standard security technology for establishing an encrypted link between a server and a client—typically a web server (website) and a browser, or a mail server and a mail client (e.g., Outlook). It is more widely known than `TLS`, or Transport Layer Security, the successor technology of SSL.
 
-### IV. HOW DOES SSL WORKS ? <a name="how-ssl"></a>
+### V. HOW DOES SSL WORKS ? <a name="how-ssl"></a>
 
 When a browser attempts to access a website that is secured by SSL, the browser and the web server establish an SSL connection using a process called an “SSL Handshake” (see diagram below). Note that the SSL Handshake is invisible to the user and happens instantaneously.
 
@@ -278,6 +290,63 @@ Because encrypting and decrypting with private and public key takes a lot of pro
 5. **Server** and Browser now encrypt all transmitted data with the session key.
 
 
-### Nginx Configuration
+### VI. Nginx Configuration <a name="nginx-configuration"></a>
+- The behavior of the Nginx server is determined by its configuration file, typically located at `/etc/nginx/sites-available/default`. This configuration file serves as a vital blueprint, defining how Nginx operates. Within this file, I have made specific adjustments to customize the server's behavior according to the desired requirements and functionality of the subject.
 
-## VI. Resources
+      server {
+           listen 443 ssl;
+           ssl_protocols TLSv1.3;
+           ssl_certificate ${CERTS_PATH};
+           ssl_certificate_key /etc/nginx/ssl/NG.key;
+
+           # Set the root directory, index files, and server name
+           root /var/www/html;
+           server_name ${DOMAIN_NAME};
+           index index.php index.html index.htm;
+
+           location ~ \.php$ {
+           # Include the FastCGI configuration for PHP
+           include snippets/fastcgi-php.conf;
+           fastcgi_pass wordpress:9000;
+          }
+      }
+
+   - **listen 443 ssl;** : This line specifies that the server should listen on port 443 (the default HTTPS port) and use SSL/TLS for secure communication.
+   - **ssl_protocols TLSv1.3;** : It sets the desired SSL/TLS protocol version to TLS 1.3 for secure connections.
+   - **ssl_certificate ${CERTS_PATH};** : This directive provides the path to the SSL/TLS certificate file used for encryption. ${CERTS_PATH} is a placeholder that should be replaced with the actual certificate path.
+   -  **ssl_certificate_key /etc/nginx/ssl/NG.key;** : It specifies the path to the private key corresponding to the SSL/TLS certificate.
+   - **root /var/www/html;**: Sets the root directory where the web server will look for files to serve.
+   - **server_name ${DOMAIN_NAME};** : Specifies the domain name associated with the server block.
+   - **index index.php index.html index.htm;** : Defines the order in which the server will look for index files (e.g., index.php, index.html, index.htm).
+   - **location ~ \.php$ { ... }** : This block handles requests for PHP files. It includes a configuration file (snippets/fastcgi-php.conf) that manages the FastCGI process for PHP and forwards requests to the WordPress container at wordpress:9000.
+
+## VI. Ressources <a name="ressources"></a>
+
+### Docker : <a name="rs-docker"></a>
+- [Docker Overview](https://docs.docker.com/get-started/overview/)
+- [Docker (YTB-1)](https://www.youtube.com/watch?v=eGz9DS-aIeY) - [Docker (YTB-2)](https://www.youtube.com/watch?v=pTFZFxd4hOI)
+- [Docker Network (YTB)](https://www.youtube.com/watch?v=bKFMS5C4CG0&t=615s)
+- [Docker Volume (YTB)](https://www.youtube.com/watch?v=p2PH_YPCsis)
+- [Docker Network and Volume](https://webdock.io/en/docs/how-guides/docker-guides/how-to-create-and-manage-docker-networks-and-docker-volumes)
+- [Docker Compose (YTB-1)](https://www.youtube.com/watch?v=DM65_JyGxCo&t=1s) - [Docker Compose (YTB-2)](https://www.youtube.com/watch?v=Qw9zlE3t8Ko&t=9s)
+- [How Docker works ?](https://www.youtube.com/watch?v=-YnMr1lj4Z8)
+- [Namespaces - Cgroups (1)](https://resources.infosecinstitute.com/topics/general-security/how-docker-primitives-secure-container-environments/#:~:text=Namespaces%20are%20a%20feature%20of,the%20containers%20from%20the%20host.) - [Namespaces - Cgroups (2)](https://medium.com/@kasunmaduraeng/docker-namespace-and-cgroups-dece27c209c7)
+- [Containerd with Namespaces and Cgroups](https://faun.pub/kubernetes-story-linux-namespaces-and-cgroups-what-are-containers-made-from-d544ac9bd622)
+- [Namespaces - Cgroups (YTB)](https://www.youtube.com/watch?v=el7768BNUPw)
+
+### Mariadb : <a name="rs-mariadb"></a>
+- [Mariadb](https://www.forestadmin.com/blog/maria-db-commands/)
+- [Mariadb CMD (YTB)](https://www.youtube.com/watch?v=6qtXDsw_X1k&t=12s) - [Mariadb CMD (YTB-2)](https://www.youtube.com/watch?v=MI4590v1QoU&t=11s)
+
+## Wordpress : <a name="rs-wordpress"></a>
+- [Install WP-CLI](https://blog.sucuri.net/2022/11/wp-cli-how-to-install-wordpress-via-ssh.html)
+- [Wordpress Configuration CMD](https://developer.wordpress.org/cli/commands/config/set/)
+- [Install Wordpress](https://developer.wordpress.org/cli/commands/core/)
+- [Create WP user](https://developer.wordpress.org/cli/commands/user/create/)
+
+### Nginx : <a name="rs-nginx"></a>
+- [SSL](https://www.digicert.com/what-is-an-ssl-certificate) - [SSL](https://www.cloudflare.com/en-gb/learning/ssl/what-is-ssl/)
+- [TLS](https://www.cloudflare.com/en-gb/learning/ssl/transport-layer-security-tls/)
+- [SSL, TLS, HTTP, HTTPS (YTB)](https://www.youtube.com/watch?v=hExRDVZHhig)
+- [Nginx Configuration](https://ubiq.co/tech-blog/nginx-ssl-configuration-step-step-details/)
+
