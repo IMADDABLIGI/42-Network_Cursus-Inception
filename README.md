@@ -331,7 +331,19 @@ Because encrypting and decrypting with private and public key takes a lot of pro
 - [Containerd with Namespaces and Cgroups](https://faun.pub/kubernetes-story-linux-namespaces-and-cgroups-what-are-containers-made-from-d544ac9bd622)
 - [Namespaces - Cgroups (YTB)](https://www.youtube.com/watch?v=el7768BNUPw)
 
+### Mariadb :
+- [Mariadb](https://www.forestadmin.com/blog/maria-db-commands/)
+- [Mariadb CMD (YTB)](https://www.youtube.com/watch?v=6qtXDsw_X1k&t=12s) - [Mariadb CMD (YTB-2)](https://www.youtube.com/watch?v=MI4590v1QoU&t=11s)
+
+## Wordpress :
+- [Install WP-CLI](https://blog.sucuri.net/2022/11/wp-cli-how-to-install-wordpress-via-ssh.html)
+- [Wordpress Configuration CMD](https://developer.wordpress.org/cli/commands/config/set/)
+- [Install Wordpress](https://developer.wordpress.org/cli/commands/core/)
+- [Create WP user](https://developer.wordpress.org/cli/commands/user/create/)
+
 ### NGinx:
+- [SSL](https://www.digicert.com/what-is-an-ssl-certificate) - [SSL](https://www.cloudflare.com/en-gb/learning/ssl/what-is-ssl/)
+- [TLS](https://www.cloudflare.com/en-gb/learning/ssl/transport-layer-security-tls/)
+- [SSL, TLS, HTTP, HTTPS (YTB)](https://www.youtube.com/watch?v=hExRDVZHhig)
 - [Nginx Configuration](https://ubiq.co/tech-blog/nginx-ssl-configuration-step-step-details/)
-- [youtube](https://www.youtube.com/watch?v=hExRDVZHhig)
-- [SSL](https://www.digicert.com/what-is-an-ssl-certificate)
+
