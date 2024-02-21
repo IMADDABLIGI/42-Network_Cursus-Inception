@@ -25,7 +25,10 @@
    - [HOW DOES SSL WORKS ?](#how-ssl)
    - [Nginx Configuration](#nginx-configuration)
 6. [Ressources](#ressources)
-
+   - [Docker](#rs-docker)
+   - [Mariadb](#rs-mariadb)
+   - [Wordpress](#rs-wordpress)
+   - [Nginx](#rs-nginx)
 ---
 
 ## I. Subject Requirements <a name="subject-requirements"></a>
@@ -216,7 +219,7 @@ After making this change, WordPress will be able to establish a connection with 
 
 ## IV. WordPress <a name="wordpress"></a>
 
-### Definition <a name="wordpress_definition"></a>
+### Definition <a name="wordpress-definition"></a>
 
 - `WordPress` is a popular content management system (CMS) that allows users to create and manage websites and blogs easily. It is written in PHP and uses a MySQL or MariaDB database to store content and settings.
 
@@ -319,7 +322,7 @@ Because encrypting and decrypting with private and public key takes a lot of pro
 
 ## VI. Ressources <a name="ressources"></a>
 
-### Docker :
+### Docker : <a name="rs-docker"></a>
 - [Docker Overview](https://docs.docker.com/get-started/overview/)
 - [Docker (YTB-1)](https://www.youtube.com/watch?v=eGz9DS-aIeY) - [Docker (YTB-2)](https://www.youtube.com/watch?v=pTFZFxd4hOI)
 - [Docker Network (YTB)](https://www.youtube.com/watch?v=bKFMS5C4CG0&t=615s)
@@ -331,17 +334,17 @@ Because encrypting and decrypting with private and public key takes a lot of pro
 - [Containerd with Namespaces and Cgroups](https://faun.pub/kubernetes-story-linux-namespaces-and-cgroups-what-are-containers-made-from-d544ac9bd622)
 - [Namespaces - Cgroups (YTB)](https://www.youtube.com/watch?v=el7768BNUPw)
 
-### Mariadb :
+### Mariadb : <a name="rs-mariadb"></a>
 - [Mariadb](https://www.forestadmin.com/blog/maria-db-commands/)
 - [Mariadb CMD (YTB)](https://www.youtube.com/watch?v=6qtXDsw_X1k&t=12s) - [Mariadb CMD (YTB-2)](https://www.youtube.com/watch?v=MI4590v1QoU&t=11s)
 
-## Wordpress :
+## Wordpress : <a name="rs-wordpress"></a>
 - [Install WP-CLI](https://blog.sucuri.net/2022/11/wp-cli-how-to-install-wordpress-via-ssh.html)
 - [Wordpress Configuration CMD](https://developer.wordpress.org/cli/commands/config/set/)
 - [Install Wordpress](https://developer.wordpress.org/cli/commands/core/)
 - [Create WP user](https://developer.wordpress.org/cli/commands/user/create/)
 
-### NGinx:
+### Nginx : <a name="rs-nginx"></a>
 - [SSL](https://www.digicert.com/what-is-an-ssl-certificate) - [SSL](https://www.cloudflare.com/en-gb/learning/ssl/what-is-ssl/)
 - [TLS](https://www.cloudflare.com/en-gb/learning/ssl/transport-layer-security-tls/)
 - [SSL, TLS, HTTP, HTTPS (YTB)](https://www.youtube.com/watch?v=hExRDVZHhig)
