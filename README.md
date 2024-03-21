@@ -363,7 +363,7 @@ Because encrypting and decrypting with private and public key takes a lot of pro
 - [Mariadb](https://www.forestadmin.com/blog/maria-db-commands/)
 - [Mariadb CMD (YTB)](https://www.youtube.com/watch?v=6qtXDsw_X1k&t=12s) - [Mariadb CMD (YTB-2)](https://www.youtube.com/watch?v=MI4590v1QoU&t=11s)
 
-## Wordpress : <a name="rs-wordpress"></a>
+### Wordpress : <a name="rs-wordpress"></a>
 - [Install WP-CLI](https://blog.sucuri.net/2022/11/wp-cli-how-to-install-wordpress-via-ssh.html)
 - [Wordpress Configuration CMD](https://developer.wordpress.org/cli/commands/config/set/)
 - [Install Wordpress](https://developer.wordpress.org/cli/commands/core/)
